@@ -34,7 +34,7 @@
         <v-list-item-action>
           <v-icon color="white" x-small>mdi-radiobox-blank</v-icon>
         </v-list-item-action>
-        <v-list-item-content class="colorTitle">
+        <v-list-item-content class="colorWhite">
           <v-list-item-title>Dashboard</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -43,7 +43,7 @@
         <v-list-item-action>
           <v-icon color="white" x-small>mdi-radiobox-blank</v-icon>
         </v-list-item-action>
-        <v-list-item-content class="colorTitle">
+        <v-list-item-content >
           <v-list-item-title>Ingreso Informe CT</v-list-item-title>
         </v-list-item-content>
       </v-list-item>

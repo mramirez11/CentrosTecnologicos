@@ -1,18 +1,17 @@
 <template>
   <v-app>
-    <v-card class="mx-auto"
-    color="black"
-    max-width="344">
-    <NavBar /> 
+    <v-card class="mx-auto" color="black" max-width="344">
+      <NavBar />
     </v-card>
 
+    <!-- 
     <v-content>
       <HelloWorld />
     </v-content>
-
-    <v-content>
+    -->
+    <v-main>
       <Formulario />
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
@@ -36,8 +35,3 @@ export default {
 };
 </script>
 
-<style scoped>
-.colorTitle {
-  color: white;
-}
-</style>
