@@ -46,7 +46,7 @@
         </v-col>
         <!-- Subir Logo -->
         <v-col>
-          <v-file-input multiple label="Subir Logo"></v-file-input>
+          <v-file-input accept="image/*" chips show-size label="Subir Logo"></v-file-input>
         </v-col>
       </v-row>
     </v-card>
