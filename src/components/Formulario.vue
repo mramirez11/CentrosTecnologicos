@@ -93,7 +93,6 @@
     </v-card>
 
     <!-- Formulario Row 3 -->
-
     <v-card color="#F2F2F2" class="pa-4 mt-6">
       <v-row>
         <!--  Tipo Select-->
@@ -104,13 +103,20 @@
         <v-col>
           <v-text-field v-model="direccion" label="Direccion" required></v-text-field>
         </v-col>
-        <!--  Tipo Select-->
+        <!--  Region Select-->
         <v-col class="d-flex">
-          <v-select label="Region" :items="regiones" item-text="region" item-value="region_number" solo></v-select>
+          <v-select
+            label="Region"
+            :items="regiones"
+            item-text="region"
+            item-value="region_number"
+            solo
+          ></v-select>
         </v-col>
-        <!-- Facebook-->
-        <v-col>
-          <v-text-field v-model="facebook" label="Facebook"></v-text-field>
+
+        <!-- Ciudad TextField-->
+         <v-col>
+          <v-text-field v-model="ciudad" label="Ciudad" required></v-text-field>
         </v-col>
       </v-row>
     </v-card>
@@ -137,12 +143,12 @@ export default {
       youtube: "",
       linkedin: "",
       direccion: "",
-
+      ciudad: "",
       modal: false,
       fechaCreacion: new Date().toISOString().substr(0, 10),
       menu: false,
       tipo: ["Principal", "Sede"],
-      regiones: regionesJSON
+      regiones: regionesJSON,
     };
   }
 };
