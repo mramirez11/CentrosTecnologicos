@@ -9,9 +9,9 @@
       <HelloWorld />
     </v-content>
     -->
-    <v-main>
+    <v-content>
       <Formulario />
-    </v-main>
+    </v-content>
   </v-app>
 </template>
 
