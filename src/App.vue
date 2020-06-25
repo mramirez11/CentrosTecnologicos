@@ -11,18 +11,19 @@
 
 <script>
 import Formulario from "./components/Formulario";
+import PanelEH from "./components/EquipoHumano/PanelEH";
 import NavBar from "./components/NavBar";
 
 export default {
   name: "App",
 
   components: {
+    NavBar,
     Formulario,
-    NavBar
+    PanelEH,
   },
 
   data: () => ({
-    drawer: false
   })
 };
 </script>

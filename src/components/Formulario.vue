@@ -1,8 +1,9 @@
 <template>
   <v-container grid-list-mdfluid>
+    <PanelEH />
     <v-layout>
       <v-flex xs12>
-        <v-form class="pl-6 pr-6" ref="form" v-model="valid" lazy-validation>
+        <v-form class="pl-6 pr-6" ref="form" v-model="valid">
           <!-- Titulo -->
           <v-layout justify-center class="pb-5 pt-3 blue--text">
             <h5 class="font-weight text-h5">Datos generales del Centro Tecnológico</h5>
@@ -14,7 +15,11 @@
             <v-row>
               <!--  Nombre TextField-->
               <v-col>
-                <v-text-field v-model="nombre" label="Nombre Centro Tecnológico" required></v-text-field>
+                <v-text-field
+                  v-model="nombre"
+                  label="Nombre Centro Tecnológico"
+                  :rules="inputRules"
+                ></v-text-field>
               </v-col>
               <!-- Fecha de Creacion DatePicker -->
               <v-col>
@@ -34,6 +39,7 @@
                         label="Fecha de Creación"
                         readonly
                         prepend-icon="calendar_today"
+                        :rules="inputRules"
                         v-bind="attrs"
                         v-on="on"
                       ></v-text-field>
@@ -51,7 +57,7 @@
               </v-col>
               <!-- Dependencia TextField -->
               <v-col>
-                <v-text-field v-model="dependencia" label="Dependencia" required></v-text-field>
+                <v-text-field v-model="dependencia" label="Dependencia" :rules="inputRules"></v-text-field>
               </v-col>
               <!-- Subir Logo -->
               <v-col>
@@ -66,11 +72,15 @@
             <v-row>
               <!--  Correo Electronico TextField-->
               <v-col>
-                <v-text-field v-model="correoElectronico" label="Correo Electronico" required></v-text-field>
+                <v-text-field
+                  v-model="correoElectronico"
+                  label="Correo Electronico"
+                  :rules="emailRules"
+                ></v-text-field>
               </v-col>
               <!-- Telefono TextField -->
               <v-col>
-                <v-text-field v-model="telefono" label="Telefono" required></v-text-field>
+                <v-text-field v-model="telefono" label="Telefono"></v-text-field>
               </v-col>
               <!-- Pagina Web-->
               <v-col>
@@ -106,11 +116,11 @@
             <v-row>
               <!--  Tipo Select-->
               <v-col>
-                <v-select :items="tipo " label="Tipo Dirección"></v-select>
+                <v-select :items="tipo" label="Tipo Dirección"></v-select>
               </v-col>
               <!-- Direccion TextField -->
               <v-col>
-                <v-text-field v-model="direccion" label="Direccion" required></v-text-field>
+                <v-text-field v-model="direccion" label="Direccion" :rules="inputDireccion"></v-text-field>
               </v-col>
               <!--  Region Select-->
               <v-col>
@@ -124,7 +134,7 @@
 
               <!-- Ciudad TextField-->
               <v-col>
-                <v-text-field v-model="ciudad" label="Ciudad" required></v-text-field>
+                <v-text-field v-model="ciudad" label="Ciudad" :rules="inputCiudad"></v-text-field>
               </v-col>
             </v-row>
           </v-card>
@@ -132,24 +142,38 @@
           <!-- Formulario Row 4 -->
           <v-card color="#F2F2F2" class="mt-6 pl-8 pr-8">
             <!-- Director -->
+              <v-row>
+                <v-layout justify-center class="mt-2">
+                  <h1 class="font-weight  text-h6">Director</h1>
+                </v-layout>
+              </v-row>
             <v-row>
               <!-- Nombre Director TextField -->
-              <v-col>
-                <v-text-field v-model="nombreDirector" label="Nombre Director" required></v-text-field>
+              <v-col >
+                <v-text-field v-model="nombreDirector" label="Nombre" required></v-text-field>
               </v-col>
 
               <!-- Rut Director TextField -->
               <v-col>
-                <v-text-field v-model="rutDirector" label="Rut Director" required></v-text-field>
+                <v-text-field
+                  v-model="rutDirector"
+                  label="Rut(Sin puntos ni guión)"
+                  required
+                ></v-text-field>
               </v-col>
 
               <!-- Género Director Selected-->
               <v-col>
-                <v-select v-model="generoDirector" label="Género Director" :items="genero"></v-select>
+                <v-select v-model="generoDirector" label="Género" :items="genero"></v-select>
               </v-col>
             </v-row>
 
             <!-- Gerente-->
+            <v-row>
+                <v-layout justify-center class="mt-2">
+                  <h1 class="text-h6">Gerente</h1>
+                </v-layout>
+              </v-row>
             <v-row>
               <!-- Nombre Gerente TextField -->
               <v-col>
@@ -170,7 +194,7 @@
 
           <!-- Boton siguiente-->
           <v-layout pt-4 flex-row-reverse>
-            <v-btn :disabled="validate" color="success" class="mr-4">Siguiente</v-btn>
+            <v-btn :disabled="!valid" @click="submit" color="success" class="mr-4">Siguiente</v-btn>
           </v-layout>
         </v-form>
       </v-flex>
@@ -180,12 +204,25 @@
 <script>
 // Para importar json desde archivo local
 import regionesJSON from "../assets/json/regiones.json";
-
+import PanelEH from "../components/EquipoHumano/PanelEH";
 export default {
+  components: {
+    PanelEH
+  },
   //name: "Formulario",
   data() {
     return {
-      validate: false,
+      // Para validar Formulario
+      inputRules: [v => v.length >= 10 || "Minimo 10 caracteres"],
+      emailRules: [
+        v => !!v || "E-mail es requerido",
+        v => /.+@.+\..+/.test(v) || "E-mail debe ser valido"
+      ],
+      inputDireccion: [v => v.length > 0 || "Ingresa una Direccion"],
+      inputCiudad: [v => v.length > 0 || "Ingresa una ciudad"],
+      valid: false, // Para activar/desactivar boton
+
+      // Datos del formulario
       nombre: "",
       dependencia: "",
       correoElectronico: "",
@@ -211,6 +248,16 @@ export default {
       rutGerente: "",
       generoGerente: ""
     };
+  },
+
+  methods: {
+    submit() {
+      if (this.$refs.form.validate()) {
+        console.log("Formulario validado");
+      } else {
+        console.log("Formulario no validao");
+      }
+    }
   }
 };
 </script>

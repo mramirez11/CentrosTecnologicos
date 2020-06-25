@@ -6,9 +6,10 @@
 
 <script>
 import Formulario from "@/components/Formulario.vue";
+
 export default {
   components: {
-    Formulario
+    Formulario,
   }
 };
 </script>

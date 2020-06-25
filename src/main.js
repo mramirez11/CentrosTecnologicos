@@ -4,8 +4,9 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
 import Axios from 'axios';
-import VueAxios from 'vue-axios';
 import Vuex from "vuex";
+import VueAxios from 'vue-axios';
+
 // Importacion de libreria de Iconos
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
