@@ -6,6 +6,9 @@ import vuetify from './plugins/vuetify';
 import Axios from 'axios';
 import VueAxios from 'vue-axios';
 import Vuex from "vuex";
+// Importacion de libreria de Iconos
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
+
 
 Vue.config.productionTip = false
 Vue.use(VueAxios,Axios)
