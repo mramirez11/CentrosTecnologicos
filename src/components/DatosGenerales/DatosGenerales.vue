@@ -100,7 +100,7 @@
   </v-container>
 </template>
 <script>
-import PanelEH from "@/components/EquipoHumano/PanelEH";
+import PanelEH from "@/components/DatosGenerales/PanelEH";
 import Direccion from "@/components/Direccion";
 import Contacto from "@/components/DatosGenerales/Contacto";
 

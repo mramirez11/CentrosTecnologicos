@@ -26,10 +26,6 @@
         <v-col>
           <v-select v-model="generoSeleccionado" label="Género" :items="genero"></v-select>
         </v-col>
-        <!-- Rol  Selected-->
-        <v-col>
-          <v-select v-model="rolSeleccionado" label="Cargo" :items="rol"></v-select>
-        </v-col>
       </v-row>
     </v-card>
   </v-container>
@@ -44,20 +40,6 @@ export default {
     return {
       nombre: "",
       rut: "",
-      rol: [
-        "Director",
-        "Gerente",
-        "Investigador Permanente",
-        "Investigador Asociado",
-        "Asistente de Investigación",
-        "Tesista Pregrado",
-        "Tesista Postgrado",
-        "Profesional",
-        "Técnico",
-        "Administrativo",
-        "Otro"
-      ],
-      rolSeleccionado: "",
       genero: ["Masculino", "Femenino"],
       generoSeleccionado: "",
 
