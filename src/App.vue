@@ -13,6 +13,8 @@
 import Formulario from "./components/Formulario";
 import PanelEH from "./components/EquipoHumano/PanelEH";
 import NavBar from "./components/NavBar";
+import Direccion from "./components/Direccion"
+//import Contacto from "./components/Contacto"
 
 export default {
   name: "App",
@@ -21,6 +23,8 @@ export default {
     NavBar,
     Formulario,
     PanelEH,
+    Direccion,
+  //  Contacto,
   },
 
   data: () => ({
