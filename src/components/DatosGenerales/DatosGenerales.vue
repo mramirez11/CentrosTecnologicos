@@ -8,7 +8,7 @@
             <h5 class="font-weight text-h5">Datos generales del Centro Tecnológico</h5>
           </v-layout>
 
-          <!-- Formulario Row 1 -->
+          <!-- Info CT Component -->
           <v-container pb-0>
             <v-card color="#F2F2F2" class="pl-8 pr-8">
               <v-row>
@@ -66,16 +66,13 @@
             </v-card>
           </v-container>
 
-          <!-- Formulario Row 2 -->
-
+          <!-- Contacto Component -->
           <Contacto />
 
-          <!-- Formulario Row 3 -->
-
+          <!-- Direccion Component -->
           <Direccion />
-          <!-- Formulario Row 4 -->
 
-          <!-- Gerente-->
+          <!-- Director y Gerente Components -->
           <v-row>
             <v-col>
               <v-layout justify-center class="mt-2">
@@ -103,16 +100,17 @@
   </v-container>
 </template>
 <script>
-import PanelEH from "../components/EquipoHumano/PanelEH";
-import Direccion from "../components/Direccion";
-import Contacto from "../components/Contacto";
+import PanelEH from "@/components/EquipoHumano/PanelEH";
+import Direccion from "@/components/Direccion";
+import Contacto from "@/components/DatosGenerales/Contacto";
+
 export default {
   components: {
     PanelEH,
     Direccion,
     Contacto
   },
-  name: "Formulario",
+  name: "DatosGenerales",
   data() {
     return {
       // Para validar Formulario
@@ -132,6 +130,7 @@ export default {
     submit() {
       if (this.$refs.form.validate()) {
         console.log("Formulario validado");
+        // this.$router.push("/PyGEstrategica")
       } else {
         console.log("Formulario no validao");
       }

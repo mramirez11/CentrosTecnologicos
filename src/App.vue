@@ -10,25 +10,22 @@
 </template>
 
 <script>
-import Formulario from "./components/Formulario";
+import DatosGenerales from "./components/DatosGenerales/DatosGenerales";
 import PanelEH from "./components/EquipoHumano/PanelEH";
 import NavBar from "./components/NavBar";
-import Direccion from "./components/Direccion"
-//import Contacto from "./components/Contacto"
+import Direccion from "./components/Direccion";
 
 export default {
   name: "App",
 
   components: {
     NavBar,
-    Formulario,
+    DatosGenerales,
     PanelEH,
-    Direccion,
-  //  Contacto,
+    Direccion
   },
 
-  data: () => ({
-  })
+  data: () => ({})
 };
 </script>
 

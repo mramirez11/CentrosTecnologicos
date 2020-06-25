@@ -1,15 +1,19 @@
 <template>
-  <div class="about">
-    <Formulario />
+  <div>
+    <!-- <DatosGenerales /> -->
+
+    <PyGEstrategica />
   </div>
 </template>
 
 <script>
-import Formulario from "@/components/Formulario.vue";
+import DatosGenerales from "@/components/DatosGenerales/DatosGenerales.vue";
+import PyGEstrategica from "../components/PygEstrategica/PygEstrategica.vue";
 
 export default {
   components: {
-    Formulario,
+    DatosGenerales,
+    PyGEstrategica
   }
 };
 </script>

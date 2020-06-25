@@ -27,8 +27,9 @@
 <script>
 // Para importar json desde archivo local
 import regionesJSON from "../assets/json/regiones.json";
+
 export default {
-  data() {
+data() {
     return {
       direccion: "",
       ciudad: "",
