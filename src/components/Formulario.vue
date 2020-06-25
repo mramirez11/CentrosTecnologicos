@@ -1,6 +1,5 @@
 <template>
   <v-container grid-list-mdfluid>
-    <PanelEH />
     <v-layout>
       <v-flex xs12>
         <v-form class="pl-6 pr-6" ref="form" v-model="valid">
@@ -140,57 +139,24 @@
           </v-card>
 
           <!-- Formulario Row 4 -->
-          <v-card color="#F2F2F2" class="mt-6 pl-8 pr-8">
-            <!-- Director -->
-              <v-row>
-                <v-layout justify-center class="mt-2">
-                  <h1 class="font-weight  text-h6">Director</h1>
-                </v-layout>
-              </v-row>
-            <v-row>
-              <!-- Nombre Director TextField -->
-              <v-col >
-                <v-text-field v-model="nombreDirector" label="Nombre" required></v-text-field>
-              </v-col>
 
-              <!-- Rut Director TextField -->
-              <v-col>
-                <v-text-field
-                  v-model="rutDirector"
-                  label="Rut(Sin puntos ni guión)"
-                  required
-                ></v-text-field>
-              </v-col>
-
-              <!-- Género Director Selected-->
-              <v-col>
-                <v-select v-model="generoDirector" label="Género" :items="genero"></v-select>
-              </v-col>
-            </v-row>
-
-            <!-- Gerente-->
-            <v-row>
-                <v-layout justify-center class="mt-2">
-                  <h1 class="text-h6">Gerente</h1>
-                </v-layout>
-              </v-row>
-            <v-row>
-              <!-- Nombre Gerente TextField -->
-              <v-col>
-                <v-text-field v-model="nombreGerente" label="Nombre Gerente" required></v-text-field>
-              </v-col>
-
-              <!-- Rut Gerente TextField -->
-              <v-col>
-                <v-text-field v-model="rutGerente" label="Rut Gerente" required></v-text-field>
-              </v-col>
-
-              <!-- Género Gerente Selected-->
-              <v-col class="d-flex">
-                <v-select v-model="generoGerente" label="Género Gerente" :items="genero"></v-select>
-              </v-col>
-            </v-row>
-          </v-card>
+          <!-- Gerente-->
+          <v-row>
+            <v-col>
+              <v-layout justify-center class="mt-2">
+                <h1 class="text-h6">Director</h1>
+              </v-layout>
+              <v-layout>
+                <PanelEH />
+              </v-layout>
+            </v-col>
+            <v-col>
+              <v-layout justify-center class="mt-2">
+                <h1 class="text-h6">Gerente</h1>
+              </v-layout>
+              <PanelEH />
+            </v-col>
+          </v-row>
 
           <!-- Boton siguiente-->
           <v-layout pt-4 flex-row-reverse>
@@ -239,14 +205,7 @@ export default {
       fechaCreacion: new Date().toISOString().substr(0, 10),
       menu: false,
       tipo: ["Principal", "Sede"],
-      regiones: regionesJSON,
-      genero: ["Masculino", "Femenino"],
-      nombreDirector: "",
-      rutDirector: "",
-      generoDirector: "",
-      nombreGerente: "",
-      rutGerente: "",
-      generoGerente: ""
+      regiones: regionesJSON
     };
   },
 
