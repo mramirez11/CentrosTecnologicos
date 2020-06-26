@@ -1,10 +1,10 @@
 <template>
   <div>
-    <DatosGenerales /> 
+    <!-- <DatosGenerales /> -->
 
     <!-- <PyGEstrategica /> -->
 
-    <!-- <EquipoHumano /> -->
+    <EquipoHumano />
   </div>
 </template>
 

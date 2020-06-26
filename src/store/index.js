@@ -1,20 +1,34 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    numero: 10,
-  }, 
+    miembrosEH: [
+      {
+        nombre: '',
+        rut: '',
+        generoSeleccionado: '',
+      },
+    ],
+  },
   mutations: {
-    aumentar(state, n){
-      state.numero += n
+    nuevoMiembro(state) {
+      state.miembrosEH.push({
+        nombre: '',
+        rut: '',
+        generoSeleccionado: '',
+      });
+      console.log(state.miembrosEH);
+    },
+    deleteMiembro(state, index){
+      state.miembrosEH.splice(index,1)
+      console.log("Elimina2")
+      console.log(state.miembrosEH)
     }
   },
   // Para consumir desde API´s
-  actions: {
-  },
-  modules: {
-  }
-})
+  actions: {},
+  modules: {},
+});
