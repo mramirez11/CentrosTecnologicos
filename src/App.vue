@@ -12,7 +12,7 @@
 <script>
 import DatosGenerales from "./components/DatosGenerales/DatosGenerales";
 import NavBar from "./components/NavBar";
-import Direccion from "./components/Direccion";
+
 
 export default {
   name: "App",
@@ -20,7 +20,6 @@ export default {
   components: {
     NavBar,
     DatosGenerales,
-    Direccion
   },
 
   data: () => ({})

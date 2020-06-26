@@ -70,8 +70,64 @@
           <Contacto />
 
           <!-- Direccion Component -->
-          <Direccion />
 
+          <v-layout v-for="(direccion, index) in direcciones" :key="index">
+            <v-container pb-0 pt-0>
+              <v-card color="#F2F2F2" class="mt-6 pl-8 pr-8">
+                <v-layout justify-end>
+                  <v-layout>
+                    <!-- Titulo -->
+                    <v-layout justify-center>
+                      <h3>Direccion {{direccion.tipoDireccion}}</h3>
+                    </v-layout>
+                    <!-- Boton Eliminar miembro-->
+                    <v-btn @click="deleteDireccion(index)" icon color="red">
+                      <v-icon>delete</v-icon>
+                    </v-btn>
+                  </v-layout>
+                </v-layout>
+                <v-row>
+                  <!--  Tipo Select-->
+                  <v-col>
+                    <v-select
+                      v-model="direccion.tipoDireccion"
+                      :items="tipo"
+                      label="Tipo Dirección"
+                    ></v-select>
+                  </v-col>
+                  <!-- Direccion TextField -->
+                  <v-col>
+                    <v-text-field
+                      v-model="direccion.direccion"
+                      label="Direccion"
+                      :rules="inputDireccion"
+                    ></v-text-field>
+                  </v-col>
+                  <!--  Region Select-->
+                  <v-col>
+                    <v-select
+                      v-model="direccion.regionSeleccionada"
+                      label="Region"
+                      :items="regiones"
+                      item-text="region"
+                      item-value="region_number"
+                    ></v-select>
+                  </v-col>
+
+                  <!-- Ciudad TextField-->
+                  <v-col>
+                    <v-text-field v-model="direccion.ciudad" label="Ciudad" :rules="inputCiudad"></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </v-container>
+          </v-layout>
+          <!-- Boton agregar Direccion -->
+          <v-layout class="pt-2 pr-3" flex-row-reverse>
+            <v-btn @click="nuevaDireccion" x-small fab dark>
+              <v-icon dark>mdi-plus</v-icon>
+            </v-btn>
+          </v-layout>
           <!-- Director y Gerente Components -->
           <v-row>
             <v-col>
@@ -91,7 +147,12 @@
           </v-row>
           <!-- Boton siguiente-->
           <v-layout pt-4 flex-row-reverse>
-            <v-btn :disabled="valid" @click="goTo('PyGEstrategica')" color="success" class="mr-4">Siguiente</v-btn>
+            <v-btn
+              :disabled="valid"
+              @click="goTo('PyGEstrategica')"
+              color="success"
+              class="mr-4"
+            >Siguiente</v-btn>
           </v-layout>
         </v-form>
       </v-flex>
@@ -100,16 +161,14 @@
 </template>
 <script>
 import PanelEH from "@/components/DatosGenerales/PanelEH";
-import Direccion from "@/components/Direccion";
 import Contacto from "@/components/DatosGenerales/Contacto";
-
-
+// Para importar json desde archivo local
+import regionesJSON from "@/assets/json/regiones.json";
 import { mapState, mapMutations } from "vuex";
 
 export default {
   components: {
     PanelEH,
-    Direccion,
     Contacto
   },
   name: "DatosGenerales",
@@ -122,15 +181,24 @@ export default {
       // Datos del formulario
       nombre: "",
       dependencia: "",
+      // DatePicker
       modal: false,
       fechaCreacion: new Date().toISOString().substr(0, 10),
-      menu: false
+      menu: false,
+      // Direccion
+      tipo: ["Principal", "Sede"],
+      regiones: regionesJSON,
+
+      // Validacion
+      inputDireccion: [v => v.length > 0 || "Ingresa una Direccion"],
+      inputCiudad: [v => v.length > 0 || "Ingresa una ciudad"]
     };
   },
   computed: {
+    ...mapState(["direcciones"])
   },
   methods: {
-    ...mapMutations(["goTo"])
+    ...mapMutations(["nuevaDireccion", "deleteDireccion", "goTo"])
   }
 };
 </script>

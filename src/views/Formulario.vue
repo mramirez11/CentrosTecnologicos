@@ -4,7 +4,7 @@
     <!-- KeepAlive guarda los datos en cache /> -->
     <!-- A través del atributo component, se maneja que componente se desplega en el formulario /> -->
     <keep-alive>
-      <component v-bind:is="component"></component>
+      <component v-bind:is="route"></component>
     </keep-alive>
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
     return {};
   },
   computed: {
-    ...mapState(["component"])
+    ...mapState(["route"])
   }
 };
 </script>

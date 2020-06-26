@@ -5,8 +5,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    //valid: false, // Para activar/desactivar boton
-    component: "DatosGenerales",
+    // Para la ruta de formularios
+    route: "DatosGenerales",
+    // Equipo Humano
     miembrosEH: [
       {
         nombre: "",
@@ -14,14 +15,23 @@ export default new Vuex.Store({
         generoSeleccionado: "",
       },
     ],
+    // Direcciones
+    direcciones: [
+      {
+        tipoDireccion: "",
+        direccion: "",
+        ciudad: "",
+        regionSeleccionada: "",
+      },
+    ],
   },
   mutations: {
-    goTo(state, route) {
-      console.log(state.component);
-      state.component = route;
+    goTo(state, newRoute) {
+      console.log(state.newRoute);
+      state.route = newRoute;
     },
-    volver(state, route) {
-      state.component = route;
+    volver(state, newRoute) {
+      state.route = newRoute;
     },
     nuevoMiembro(state) {
       state.miembrosEH.push({
@@ -35,6 +45,20 @@ export default new Vuex.Store({
       state.miembrosEH.splice(index, 1);
       console.log("Elimina2");
       console.log(state.miembrosEH);
+    },
+    nuevaDireccion(state) {
+      state.direcciones.push({
+        tipoDireccion: "",
+        direccion: "",
+        ciudad: "",
+        regionSeleccionada: "",
+      });
+      console.log(state.miembrosEH);
+    },
+    deleteDireccion(state, index) {
+      state.direcciones.splice(index, 1);
+      console.log("Elimina2");
+      console.log(state.direcciones);
     },
   },
   // Para consumir desde API´s
