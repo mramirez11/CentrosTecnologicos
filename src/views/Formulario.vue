@@ -14,7 +14,6 @@ import DatosGenerales from "@/components/DatosGenerales/DatosGenerales.vue";
 import PyGEstrategica from "../components/PygEstrategica/PygEstrategica.vue";
 import EquipoHumano from "../components/EquipoHumano/EquipoHumano.vue";
 import { mapState } from "vuex";
-
 export default {
   components: {
     DatosGenerales,

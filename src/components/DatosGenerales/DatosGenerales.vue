@@ -91,7 +91,7 @@
           </v-row>
           <!-- Boton siguiente-->
           <v-layout pt-4 flex-row-reverse>
-            <v-btn :disabled="!valid" @click="goToPyGEstrategica" color="success" class="mr-4">Siguiente</v-btn>
+            <v-btn :disabled="valid" @click="goTo('PyGEstrategica')" color="success" class="mr-4">Siguiente</v-btn>
           </v-layout>
         </v-form>
       </v-flex>
@@ -102,6 +102,8 @@
 import PanelEH from "@/components/DatosGenerales/PanelEH";
 import Direccion from "@/components/Direccion";
 import Contacto from "@/components/DatosGenerales/Contacto";
+
+
 import { mapState, mapMutations } from "vuex";
 
 export default {
@@ -128,7 +130,7 @@ export default {
   computed: {
   },
   methods: {
-    ...mapMutations(["goToPyGEstrategica"])
+    ...mapMutations(["goTo"])
   }
 };
 </script>

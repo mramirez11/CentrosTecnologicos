@@ -16,16 +16,12 @@ export default new Vuex.Store({
     ],
   },
   mutations: {
-    goToDatosGenerales(state) {
+    goTo(state, route) {
       console.log(state.component);
-      state.component = "DatosGenerales";
+      state.component = route;
     },
-    goToPyGEstrategica(state) {
-      console.log(state.component);
-      state.component = "PyGEstrategica";
-    },
-    volver(state) {
-      state.component = "DatosGenerales";
+    volver(state, route) {
+      state.component = route;
     },
     nuevoMiembro(state) {
       state.miembrosEH.push({
