@@ -68,7 +68,7 @@
   </v-container>
 </template>
 <script>
-import PanelEH from "@/components/EquipoHumano/PanelEH";
+
 import { mapState, mapMutations } from "vuex";
 export default {
   data() {
@@ -97,8 +97,5 @@ export default {
       }
     }
   },
-  components: {
-    PanelEH
-  }
 };
 </script>

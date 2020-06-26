@@ -1,10 +1,11 @@
 <template>
   <div>
     <!-- <DatosGenerales /> -->
-
-    <!-- <PyGEstrategica /> -->
-
-    <EquipoHumano />
+    <!-- KeepAlive guarda los datos en cache /> -->
+    <!-- A través del atributo component, se maneja que componente se desplega en el formulario /> -->
+    <keep-alive>
+      <component v-bind:is="component"></component>
+    </keep-alive>
   </div>
 </template>
 
@@ -12,12 +13,19 @@
 import DatosGenerales from "@/components/DatosGenerales/DatosGenerales.vue";
 import PyGEstrategica from "../components/PygEstrategica/PygEstrategica.vue";
 import EquipoHumano from "../components/EquipoHumano/EquipoHumano.vue";
+import { mapState } from "vuex";
 
 export default {
   components: {
     DatosGenerales,
     PyGEstrategica,
     EquipoHumano
+  },
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapState(["component"])
   }
 };
 </script>

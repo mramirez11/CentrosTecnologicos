@@ -2,7 +2,7 @@
   <v-container grid-list-mdfluid>
     <v-layout>
       <v-flex xs12>
-        <v-form class="pl-6 pr-6" ref="form" v-model="valid">
+        <v-form class="pl-6 pr-6" v-model="valid">
           <!-- Titulo -->
           <v-layout justify-center class="pb-5 pt-3 blue--text">
             <h5 class="font-weight text-h5">Datos generales del Centro Tecnológico</h5>
@@ -89,10 +89,9 @@
               <PanelEH />
             </v-col>
           </v-row>
-
           <!-- Boton siguiente-->
           <v-layout pt-4 flex-row-reverse>
-            <v-btn :disabled="!valid" @click="submit" color="success" class="mr-4">Siguiente</v-btn>
+            <v-btn :disabled="!valid" @click="goToPyGEstrategica" color="success" class="mr-4">Siguiente</v-btn>
           </v-layout>
         </v-form>
       </v-flex>
@@ -103,6 +102,7 @@
 import PanelEH from "@/components/DatosGenerales/PanelEH";
 import Direccion from "@/components/Direccion";
 import Contacto from "@/components/DatosGenerales/Contacto";
+import { mapState, mapMutations } from "vuex";
 
 export default {
   components: {
@@ -125,16 +125,10 @@ export default {
       menu: false
     };
   },
-
+  computed: {
+  },
   methods: {
-    submit() {
-      if (this.$refs.form.validate()) {
-        console.log("Formulario validado");
-        // this.$router.push("/PyGEstrategica")
-      } else {
-        console.log("Formulario no validao");
-      }
-    }
+    ...mapMutations(["goToPyGEstrategica"])
   }
 };
 </script>

@@ -11,7 +11,6 @@
 
 <script>
 import DatosGenerales from "./components/DatosGenerales/DatosGenerales";
-import PanelEH from "./components/EquipoHumano/PanelEH";
 import NavBar from "./components/NavBar";
 import Direccion from "./components/Direccion";
 
@@ -21,7 +20,6 @@ export default {
   components: {
     NavBar,
     DatosGenerales,
-    PanelEH,
     Direccion
   },
 
