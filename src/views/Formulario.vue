@@ -13,14 +13,16 @@
 import DatosGenerales from "@/components/DatosGenerales/DatosGenerales.vue";
 import PyGEstrategica from "../components/PygEstrategica/PygEstrategica.vue";
 import EquipoHumano from "../components/EquipoHumano/EquipoHumano.vue";
-import Instancias from "../components/Instancias/Instancias.vue";
+import InstanciasParticipacion from "../components/Instancias/InstanciasParticipacion.vue";
+import InstanciasCaracter from "../components/Instancias/InstanciasCaracter.vue";
 import { mapState } from "vuex";
 export default {
   components: {
     DatosGenerales,
     PyGEstrategica,
     EquipoHumano,
-    Instancias
+    InstanciasParticipacion,
+    InstanciasCaracter,
   },
   data() {
     return {};

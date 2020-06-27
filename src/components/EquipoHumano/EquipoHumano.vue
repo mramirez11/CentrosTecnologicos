@@ -88,7 +88,7 @@
 
         <!-- Boton siguiente-->
         <v-layout pt-4 flex-row-reverse>
-          <v-btn :disabled="valid" @click="goTo('Instancias')" color="success" class="mr-4">Siguiente</v-btn>
+          <v-btn :disabled="valid" @click="goTo('InstanciasParticipacion')" color="success" class="mr-4">Siguiente</v-btn>
         </v-layout>
       </v-row>
     </v-form>

@@ -49,7 +49,6 @@
                   v-model="item.generoSeleccionado"
                   label="Género"
                   :items="genero"
-                  :rules="inputRules"
                 ></v-select>
               </v-col>
               <!-- Cargo Selected-->
@@ -103,7 +102,7 @@
 
         <!-- Boton siguiente-->
         <v-layout pt-4 flex-row-reverse>
-          <v-btn :disabled="!valid" @click="goTo('')" color="success" class="mr-4">Siguiente</v-btn>
+          <v-btn :disabled="!valid" @click="goTo('InstanciasCaracter')" color="success" class="mr-4">Siguiente</v-btn>
         </v-layout>
       </v-row>
     </v-form>

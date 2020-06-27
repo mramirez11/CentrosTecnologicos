@@ -38,6 +38,13 @@ export default new Vuex.Store({
         tipo: "",
       },
     ],
+    instanciasCaracter: [
+      {
+        nombreInstancia: "",
+        entidad: "",
+        tipo: "",
+      },
+    ],
   },
   mutations: {
     goTo(state, newRoute) {
@@ -88,6 +95,18 @@ export default new Vuex.Store({
     },
     deleteInstanciaParticipacion(state, index) {
       state.instanciasParticipacion.splice(index, 1);
+      console.log("Elimina2");
+    },
+    nuevaInstanciaCaracter(state) {
+      state.instanciasCaracter.push({
+        nombreInstancia: "",
+        entidad: "",
+        tipo: "",
+      });
+      console.log("Agregado");
+    },
+    deleteInstanciaCaracter(state, index) {
+      state.instanciasCaracter.splice(index, 1);
       console.log("Elimina2");
     },
   },
