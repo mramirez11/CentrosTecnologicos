@@ -27,10 +27,21 @@ export default new Vuex.Store({
         regionSeleccionada: "",
       },
     ],
+    instanciasParticipacion: [
+      {
+        nombre: "",
+        rut: "",
+        generoSeleccionado: "",
+        cargoSeleccionado: "",
+        nombreEntidad: "",
+        entidad: "",
+        tipo: "",
+      },
+    ],
   },
   mutations: {
     goTo(state, newRoute) {
-      console.log(state.newRoute);
+      console.log(newRoute);
       state.route = newRoute;
     },
     volver(state, newRoute) {
@@ -57,12 +68,27 @@ export default new Vuex.Store({
         ciudad: "",
         regionSeleccionada: "",
       });
-      console.log(state.miembrosEH);
+      console.log("Agregado");
     },
     deleteDireccion(state, index) {
       state.direcciones.splice(index, 1);
       console.log("Elimina2");
-      console.log(state.direcciones);
+    },
+    nuevaInstanciaParticipacion(state) {
+      state.instanciasParticipacion.push({
+        nombre: "",
+        rut: "",
+        generoSeleccionado: "",
+        cargoSeleccionado: "",
+        nombreEntidad: "",
+        entidad: "",
+        tipo: "",
+      });
+      console.log("Agregado");
+    },
+    deleteInstanciaParticipacion(state, index) {
+      state.instanciasParticipacion.splice(index, 1);
+      console.log("Elimina2");
     },
   },
   // Para consumir desde API´s
