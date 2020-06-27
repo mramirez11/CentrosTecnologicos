@@ -27,13 +27,12 @@
                 </v-btn>
               </v-layout>
             </v-layout>
-            <!-- Director -->
+            <!-- Panel -->
             <v-row>
               <!-- Nombre TextField -->
               <v-col>
-                <v-text-field v-model="miembro.nombre" label="Nombre" :rules="inputNombre" required></v-text-field>
+                <v-text-field v-model="miembro.nombre" label="Nombre" :rules="inputRules" required></v-text-field>
               </v-col>
-
               <!-- Rut TextField -->
               <v-col>
                 <v-text-field
@@ -44,10 +43,38 @@
                   required
                 ></v-text-field>
               </v-col>
-
               <!-- Género  Selected-->
               <v-col>
                 <v-select v-model="miembro.generoSeleccionado" label="Género" :items="genero"></v-select>
+              </v-col>
+            </v-row>
+            <v-row>
+              <!-- Cargo  Selected-->
+              <v-col>
+                <v-select
+                  v-model="miembro.cargoSeleccionado"
+                  label="Cargo"
+                  :items="cargo"
+                  :rules="inputRules"
+                ></v-select>
+              </v-col>
+              <!-- Funciones Selected-->
+              <v-col>
+                <v-select
+                  v-model="miembro.funcionSeleccionada"
+                  label="Funciones"
+                  :items="funciones"
+                  :rules="inputRules"
+                ></v-select>
+              </v-col>
+              <!-- Tipo Contrato Selected-->
+              <v-col>
+                <v-select
+                  v-model="miembro.tipoContratoSeleccionado"
+                  label="Tipo Contrato"
+                  :items="tipoContrato"
+                  :rules="inputRules"
+                ></v-select>
               </v-col>
             </v-row>
           </v-card>
@@ -68,27 +95,57 @@
   </v-container>
 </template>
 <script>
-
 import { mapState, mapMutations } from "vuex";
 export default {
   data() {
     return {
       genero: ["Masculino", "Femenino"],
-
-      // Validacion
-      inputNombre: [v => v.length > 0 || "Ingresa un nombre"],
-      inputRut: [
-        v => (v.length > 7 && v.length < 10) || "Ingresa un rut válido"
+      cargo: [
+        "Director",
+        "Gerente",
+        "Investigador Permanente",
+        "Investigador Asociado",
+        "Asistente de Investigación",
+        "Tesista Pregrado",
+        "Tesista Postgrado",
+        "Profesional",
+        "Técnico",
+        "Administrativo",
+        "Otro"
       ],
-      valid: false,
+      funciones: [
+        "Gestión Directiva",
+        "Gestión Financiera",
+        "Investigación",
+        "Soporte Técnico",
+        "Servicios Tecnológicos",
+        "Soporte Administrativo",
+        "Docencia Pregrado",
+        "Docencia Postgrado",
+        "Otro"
+      ],
+      tipoContrato: [
+        "Honorarios con cargo a proyecto",
+        "Honorarios con cargo a presupuesto UTALCA",
+        "Presupuesto interno del Centro Tecnológico",
+        "Planta UTALCA",
+        "Contrata UTALCA",
+        "Otro"
+      ],
+      // Validacion
+      inputRules: [v => v.length > 0 || "Requerido"],
+      inputRut: [
+        v => v.length > 7  || "Ingresa un rut válido",
+        v =>  v.length < 10 || "Ingresa un rut válido"
+      ],
+      valid: false
     };
   },
   computed: {
     ...mapState(["miembrosEH"])
   },
   methods: {
-    ...mapMutations(["nuevoMiembro", "deleteMiembro", "goTo"]),
-
-  },
+    ...mapMutations(["nuevoMiembro", "deleteMiembro", "goTo"])
+  }
 };
 </script>

@@ -13,6 +13,9 @@ export default new Vuex.Store({
         nombre: "",
         rut: "",
         generoSeleccionado: "",
+        cargoSeleccionado: "",
+        funcionSeleccionada: "",
+        tipoContratoSeleccionado: "",
       },
     ],
     // Direcciones
@@ -38,6 +41,7 @@ export default new Vuex.Store({
         nombre: "",
         rut: "",
         generoSeleccionado: "",
+        cargoSeleccionado: "",
       });
       console.log(state.miembrosEH);
     },

@@ -93,6 +93,7 @@
                       v-model="direccion.tipoDireccion"
                       :items="tipo"
                       label="Tipo Dirección"
+                      :rules="inputRules"
                     ></v-select>
                   </v-col>
                   <!-- Direccion TextField -->
@@ -100,7 +101,7 @@
                     <v-text-field
                       v-model="direccion.direccion"
                       label="Direccion"
-                      :rules="inputDireccion"
+                      :rules="inputRules"
                     ></v-text-field>
                   </v-col>
                   <!--  Region Select-->
@@ -111,12 +112,13 @@
                       :items="regiones"
                       item-text="region"
                       item-value="region_number"
+                      :rules="inputRules"
                     ></v-select>
                   </v-col>
 
                   <!-- Ciudad TextField-->
                   <v-col>
-                    <v-text-field v-model="direccion.ciudad" label="Ciudad" :rules="inputCiudad"></v-text-field>
+                    <v-text-field v-model="direccion.ciudad" label="Ciudad" :rules="inputRules"></v-text-field>
                   </v-col>
                 </v-row>
               </v-card>
@@ -174,8 +176,11 @@ export default {
   name: "DatosGenerales",
   data() {
     return {
-      // Para validar Formulario
-      inputRules: [v => v.length >= 10 || "Minimo 10 caracteres"],
+      // Para validar campos del Formulario
+      inputRules: [
+        v => v.length <= 50 || "Requerido",
+        v => v.length > 0 || "Requerido"
+      ],
       valid: false, // Para activar/desactivar boton
 
       // Datos del formulario
@@ -187,11 +192,7 @@ export default {
       menu: false,
       // Direccion
       tipo: ["Principal", "Sede"],
-      regiones: regionesJSON,
-
-      // Validacion
-      inputDireccion: [v => v.length > 0 || "Ingresa una Direccion"],
-      inputCiudad: [v => v.length > 0 || "Ingresa una ciudad"]
+      regiones: regionesJSON
     };
   },
   computed: {
