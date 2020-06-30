@@ -82,11 +82,25 @@ export default new Vuex.Store({
         nombre: "",
         tipoContrato: "",
         empresa: "",
-        direccionEmpresa: "",
         gestionDTT: false,
         areaInvestigacion: "",
         monto: 0,
         anio: "",
+      },
+    ],
+    proyecto: [
+      {
+        titulo: "",
+        codigo: "",
+        anioAdjudicacion: "",
+        duracion: 0,
+        categoria: "",
+        empresa: "",
+        montoEmpresa: 0,
+        anio: "",
+        fuenteFinanciamiento: "",
+        fondoFinanciamiento: "",
+        monto: 0,
       },
     ],
   },
@@ -203,6 +217,25 @@ export default new Vuex.Store({
     },
     deleteContrato(state, index) {
       state.contrato.splice(index, 1);
+      console.log("Elimina2");
+    },
+    nuevoProyecto(state) {
+      state.proyecto.push({
+        titulo: "",
+        codigo: "",
+        anioAdjudicacion: "",
+        duracion: 0,
+        categoria: "",
+        montoEmpresa: 0,
+        anio: "",
+        fuenteFinanciamiento: "",
+        fondoFinanciamiento: "",
+        monto: 0,
+      });
+      console.log("Agregado");
+    },
+    deleteProyecto(state, index) {
+      state.proyecto.splice(index, 1);
       console.log("Elimina2");
     },
   },

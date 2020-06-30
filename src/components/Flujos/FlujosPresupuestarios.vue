@@ -25,7 +25,6 @@
             <!-- Panel -->
             <v-row>
               <!--  Año TextField -->
-
               <v-col>
                 <v-text-field
                   v-model="item.anio"
