@@ -26,7 +26,6 @@
             <v-row>
               <!--  Año TextField -->
 
-              
               <v-col>
                 <v-text-field
                   v-model="item.anio"
@@ -70,7 +69,7 @@
               <v-col>
                 <v-currency-field v-model="item.contratos" label="Contrato" :rules="inputRules"></v-currency-field>
               </v-col>
-              <!-- Ingresos por Aporte Institucional TextField -->
+              <!-- Ingresos por Egreso Promedio anual TextField -->
               <v-col>
                 <v-currency-field
                   v-model="item.promAnual"
@@ -90,7 +89,7 @@
           </v-card>
         </v-container>
       </v-layout>
-      <!-- Boton agregar Direccion -->
+      <!-- Boton agregar Flujo -->
       <v-layout class="pt-2 pr-3" flex-row-reverse>
         <v-btn @click="nuevoFlujo" x-small fab dark>
           <v-icon dark>mdi-plus</v-icon>
@@ -104,7 +103,7 @@
 
         <!-- Boton siguiente-->
         <v-layout pt-4 flex-row-reverse>
-          <v-btn :disabled="!valid" @click="goTo('')" color="success" class="mr-4">Siguiente</v-btn>
+          <v-btn :disabled="valid" @click="goTo('Empresa')" color="success" class="mr-4">Siguiente</v-btn>
         </v-layout>
       </v-row>
     </v-form>

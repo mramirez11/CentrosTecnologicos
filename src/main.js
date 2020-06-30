@@ -11,9 +11,9 @@ import VueAxios from 'vue-axios';
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 // Importacion libreria para tipo moneda
 import VCurrencyField from 'v-currency-field'
-
 import { VTextField } from 'vuetify/lib'  //Globally import VTextField
 
+// Necesario para configurar v-currency
 Vue.component('v-text-field', VTextField)
 Vue.use(VCurrencyField, {
   locale: "es-CL", 
