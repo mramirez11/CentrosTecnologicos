@@ -7,7 +7,6 @@
           <v-layout justify-center class="pb-5 pt-3 blue--text">
             <h5 class="font-weight text-h5">Datos generales del Centro Tecnológico</h5>
           </v-layout>
-
           <!-- Info CT Component -->
           <v-container pb-0>
             <v-card color="#F2F2F2" class="pl-8 pr-8">

@@ -77,6 +77,18 @@ export default new Vuex.Store({
         direccion: "",
       },
     ],
+    contrato: [
+      {
+        nombre: "",
+        tipoContrato: "",
+        empresa: "",
+        direccionEmpresa: "",
+        gestionDTT: false,
+        areaInvestigacion: "",
+        monto: 0,
+        anio: "",
+      },
+    ],
   },
   mutations: {
     goTo(state, newRoute) {
@@ -160,14 +172,13 @@ export default new Vuex.Store({
     },
     nuevaEmpresa(state) {
       state.empresa.push({
-        rut: "",
         nombre: "",
+        rut: "",
         representante: "",
         correo: "",
         telefono: "",
         tamanio: "",
         // Para dirección de la empresa
-        tipo: "",
         region: "",
         ciudad: "",
         direccion: "",
@@ -176,6 +187,22 @@ export default new Vuex.Store({
     },
     deleteEmpresa(state, index) {
       state.empresa.splice(index, 1);
+      console.log("Elimina2");
+    },
+    nuevoContrato(state) {
+      state.contrato.push({
+        nombre: "",
+        tipoContrato: "",
+        empresa: "",
+        gestionDTT: false,
+        areaInvestigacion: "",
+        monto: 0,
+        anio: "",
+      });
+      console.log("Agregado");
+    },
+    deleteContrato(state, index) {
+      state.contrato.splice(index, 1);
       console.log("Elimina2");
     },
   },

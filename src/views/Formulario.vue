@@ -18,6 +18,7 @@ import InstanciasCaracter from "../components/Instancias/InstanciasCaracter.vue"
 import Infraestructura from "../components/Infraestructura/Infraestructura.vue";
 import FlujosPresupuestarios from "../components/Flujos/FlujosPresupuestarios.vue";
 import Empresa from "../components/Empresa/Empresa.vue";
+import Contrato from "../components/Contrato/Contrato.vue";
 
 import { mapState } from "vuex";
 export default {
@@ -30,6 +31,7 @@ export default {
     Infraestructura,
     FlujosPresupuestarios,
     Empresa,
+    Contrato,
   },
   data() {
     return {};
