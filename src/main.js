@@ -9,7 +9,20 @@ import VueAxios from 'vue-axios';
 
 // Importacion de libreria de Iconos
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
+// Importacion libreria para tipo moneda
+import VCurrencyField from 'v-currency-field'
 
+import { VTextField } from 'vuetify/lib'  //Globally import VTextField
+
+Vue.component('v-text-field', VTextField)
+Vue.use(VCurrencyField, {
+  locale: "es-CL", 
+  decimalLength: 0,
+	min: null,
+	max: null,
+	defaultValue: 0,
+  valueAsInteger: true,
+})
 
 Vue.config.productionTip = false
 Vue.use(VueAxios,Axios)

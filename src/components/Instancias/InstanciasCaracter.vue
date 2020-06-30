@@ -59,12 +59,12 @@
       <v-row align-end justify-end>
         <!-- Boton volver-->
         <v-layout pt-4>
-          <v-btn @click="goTo('')" color="success" class="mr-4">Volver</v-btn>
+          <v-btn @click="goTo('InstanciasParticipacion')" color="success" class="mr-4">Volver</v-btn>
         </v-layout>
 
         <!-- Boton siguiente-->
         <v-layout pt-4 flex-row-reverse>
-          <v-btn :disabled="valid" @click="goTo('')" color="success" class="mr-4">Siguiente</v-btn>
+          <v-btn :disabled="valid" @click="goTo('Infraestructura')" color="success" class="mr-4">Siguiente</v-btn>
         </v-layout>
       </v-row>
     </v-form>

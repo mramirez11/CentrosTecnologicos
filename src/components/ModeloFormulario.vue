@@ -39,6 +39,7 @@
                   label="Rut(Sin puntos ni guión)"
                   :rules="inputRut"
                   required
+                  min=0
                 ></v-text-field>
               </v-col>
               <!--   Selected-->

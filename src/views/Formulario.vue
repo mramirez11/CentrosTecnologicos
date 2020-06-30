@@ -15,6 +15,8 @@ import PyGEstrategica from "../components/PygEstrategica/PygEstrategica.vue";
 import EquipoHumano from "../components/EquipoHumano/EquipoHumano.vue";
 import InstanciasParticipacion from "../components/Instancias/InstanciasParticipacion.vue";
 import InstanciasCaracter from "../components/Instancias/InstanciasCaracter.vue";
+import Infraestructura from "../components/Infraestructura/Infraestructura.vue";
+import FlujosPresupuestarios from "../components/Flujos/FlujosPresupuestarios.vue";
 import { mapState } from "vuex";
 export default {
   components: {
@@ -23,6 +25,8 @@ export default {
     EquipoHumano,
     InstanciasParticipacion,
     InstanciasCaracter,
+    Infraestructura,
+    FlujosPresupuestarios
   },
   data() {
     return {};

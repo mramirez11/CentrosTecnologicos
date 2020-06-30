@@ -40,6 +40,7 @@
                   v-model="item.rut"
                   label="Rut(Sin puntos ni guión)"
                   :rules="inputRut"
+                  min=0
                   required
                 ></v-text-field>
               </v-col>
@@ -102,7 +103,7 @@
 
         <!-- Boton siguiente-->
         <v-layout pt-4 flex-row-reverse>
-          <v-btn :disabled="!valid" @click="goTo('InstanciasCaracter')" color="success" class="mr-4">Siguiente</v-btn>
+          <v-btn :disabled="valid" @click="goTo('InstanciasCaracter')" color="success" class="mr-4">Siguiente</v-btn>
         </v-layout>
       </v-row>
     </v-form>

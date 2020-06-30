@@ -45,6 +45,24 @@ export default new Vuex.Store({
         tipo: "",
       },
     ],
+    infraestructura: {
+      localizacion: "",
+      cantOficinas: 0,
+      cantMt: 0,
+      valorAvaluo: 0,
+    },
+    flujos: [
+      {
+        anio: 0,
+        proyectos: 0,
+        servicios: 0,
+        aporteInstitucional: 0,
+        transferenciaTecnologica: 0,
+        contratos: 0,
+        promAnual: 0,
+        total: 0,
+      },
+    ],
   },
   mutations: {
     goTo(state, newRoute) {
@@ -107,6 +125,23 @@ export default new Vuex.Store({
     },
     deleteInstanciaCaracter(state, index) {
       state.instanciasCaracter.splice(index, 1);
+      console.log("Elimina2");
+    },
+    nuevoFlujo(state) {
+      state.flujos.push({
+        anio: 0,
+        proyectos: 0,
+        servicios: 0,
+        aporteInstitucional: 0,
+        transferenciaTecnologica: 0,
+        contratos: 0,
+        promAnual: 0,
+        total: 0,
+      });
+      console.log("Agregado");
+    },
+    deleteFlujo(state, index) {
+      state.flujos.splice(index, 1);
       console.log("Elimina2");
     },
   },
