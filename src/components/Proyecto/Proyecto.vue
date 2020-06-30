@@ -28,7 +28,7 @@
               <v-col>
                 <v-text-field v-model="item.titulo" label="Titulo proyecto" :rules="inputRules" required></v-text-field>
               </v-col>
-              <!--  Código Selected-->
+              <!--  Código TextField-->
               <v-col>
                 <v-text-field v-model="item.codigo" label="Código" :rules="inputRules"></v-text-field>
               </v-col>
@@ -138,7 +138,7 @@
 
         <!-- Boton siguiente-->
         <v-layout pt-4 flex-row-reverse>
-          <v-btn :disabled="valid" @click="goTo('Participante')" color="success" class="mr-4">Siguiente</v-btn>
+          <v-btn :disabled="valid" @click="goTo('ParticipanteProyecto')" color="success" class="mr-4">Siguiente</v-btn>
         </v-layout>
       </v-row>
     </v-form>

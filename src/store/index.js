@@ -104,7 +104,15 @@ export default new Vuex.Store({
       },
     ],
     // Representa a participantes, en la bd se trabaja como persona
-    persona: [{ codigoProyecto: "", nombre: "", rut: "", genero: "", rol: "", }],
+    persona: [{ codigoProyecto: "", nombre: "", rut: "", genero: "", rol: "" }],
+    ebt: [
+      {
+        nombre: "",
+        codigo: "",
+        monto: 0,
+        cantTrabajadores: 0,
+      },
+    ],
   },
   mutations: {
     goTo(state, newRoute) {
@@ -241,7 +249,6 @@ export default new Vuex.Store({
       state.proyecto.splice(index, 1);
       console.log("Elimina2");
     },
-
     nuevoParticipante(state) {
       state.persona.push({
         codigoProyecto: "",
@@ -254,6 +261,19 @@ export default new Vuex.Store({
     },
     deleteParticipante(state, index) {
       state.persona.splice(index, 1);
+      console.log("Elimina2");
+    },
+    nuevoEBT(state) {
+      state.ebt.push({
+        nombre: "",
+        codigo: "",
+        monto: 0,
+        cantTrabajadores: 0,
+      });
+      console.log("Agregado");
+    },
+    deleteEBT(state, index) {
+      state.ebt.splice(index, 1);
       console.log("Elimina2");
     },
   },
