@@ -103,6 +103,8 @@ export default new Vuex.Store({
         monto: 0,
       },
     ],
+    // Representa a participantes, en la bd se trabaja como persona
+    persona: [{ codigoProyecto: "", nombre: "", rut: "", genero: "", rol: "", }],
   },
   mutations: {
     goTo(state, newRoute) {
@@ -226,6 +228,7 @@ export default new Vuex.Store({
         anioAdjudicacion: "",
         duracion: 0,
         categoria: "",
+        empresa: "",
         montoEmpresa: 0,
         anio: "",
         fuenteFinanciamiento: "",
@@ -236,6 +239,21 @@ export default new Vuex.Store({
     },
     deleteProyecto(state, index) {
       state.proyecto.splice(index, 1);
+      console.log("Elimina2");
+    },
+
+    nuevoParticipante(state) {
+      state.persona.push({
+        codigoProyecto: "",
+        nombre: "",
+        rut: "",
+        genero: "",
+        rol: "",
+      });
+      console.log("Agregado");
+    },
+    deleteParticipante(state, index) {
+      state.persona.splice(index, 1);
       console.log("Elimina2");
     },
   },

@@ -20,6 +20,7 @@ import FlujosPresupuestarios from "../components/Flujos/FlujosPresupuestarios.vu
 import Empresa from "../components/Empresa/Empresa.vue";
 import Contrato from "../components/Contrato/Contrato.vue";
 import Proyecto from "../components/Proyecto/Proyecto.vue";
+import Participante from "../components/Proyecto/Participante.vue";
 
 import { mapState } from "vuex";
 export default {
@@ -34,6 +35,7 @@ export default {
     Empresa,
     Contrato,
     Proyecto,
+    Participante
   },
   data() {
     return {};
