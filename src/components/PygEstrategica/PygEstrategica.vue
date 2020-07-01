@@ -15,7 +15,7 @@
                 <!--  Descripcion TextArea-->
                 <v-col>
                   <v-textarea
-                    name="input-7-1"
+                   rows="4"
                     label="Descripcion"
                     v-model="descripcion"
                     :rules="inputRules"
@@ -24,7 +24,7 @@
                 <!--  Objetivos TextArea-->
                 <v-col>
                   <v-textarea
-                    name="input-7-1"
+                    rows="4"
                     label="Objetivos"
                     v-model="objetivos"
                     :rules="inputRules"
@@ -40,7 +40,7 @@
                 <!--  Lineas de Investigacion TextArea -->
                 <v-col>
                   <v-textarea
-                    name="input-7-1"
+                    rows="4"
                     label="Lineas de Investigacion"
                     v-model="lineasInvestigacion"
                     :rules="inputRules"
@@ -49,7 +49,7 @@
                 <!--  Servicios Tecnológicos TextArea -->
                 <v-col>
                   <v-textarea
-                    name="input-7-1"
+                    rows="4"
                     label="Servicios Tecnológicos"
                     v-model="serviciosTecnologicos"
                     :rules="inputRules"
@@ -65,7 +65,7 @@
                 <!--  Productos TextArea -->
                 <v-col>
                   <v-textarea
-                    name="input-7-1"
+                    rows="4"
                     label="Productos"
                     v-model="productos"
                     :rules="inputRules"
@@ -74,7 +74,7 @@
                 <!--  Formacion de Capital Humano TextArea -->
                 <v-col>
                   <v-textarea
-                    name="input-7-1"
+                    rows="4"
                     label="Formacion de Capital Humano"
                     v-model="formacion"
                     :rules="inputRules"

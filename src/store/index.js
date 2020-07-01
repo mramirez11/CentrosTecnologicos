@@ -113,6 +113,17 @@ export default new Vuex.Store({
         cantTrabajadores: 0,
       },
     ],
+    servicio: [
+      {
+        tipo: "",
+        nroClientes: 0,
+        tipoSolicitante: "",
+        monto: 0,
+        gestionDTT: false,
+        comentario: "",
+        anio: "",
+      },
+    ],
   },
   mutations: {
     goTo(state, newRoute) {
@@ -274,6 +285,22 @@ export default new Vuex.Store({
     },
     deleteEBT(state, index) {
       state.ebt.splice(index, 1);
+      console.log("Elimina2");
+    },
+    nuevoServicio(state) {
+      state.servicio.push({
+        tipo: "",
+        nroClientes: "",
+        tipoSolicitante: "",
+        monto: 0,
+        gestionDTT: false,
+        comentario: "",
+        anio: "",
+      });
+      console.log("Agregado");
+    },
+    deleteServicio(state, index) {
+      state.servicio.splice(index, 1);
       console.log("Elimina2");
     },
   },

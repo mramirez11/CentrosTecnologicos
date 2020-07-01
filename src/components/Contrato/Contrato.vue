@@ -48,6 +48,7 @@
                   :rules="inputRules"
                 ></v-select>
               </v-col>
+              <!-- Ano TextField -->
               <v-col>
                 <v-text-field
                   v-model="item.anio"
