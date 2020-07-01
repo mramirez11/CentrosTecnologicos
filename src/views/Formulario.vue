@@ -27,6 +27,7 @@ import Servicio from "../components/Servicio/Servicio.vue";
 import Transferencia from "../components/Transferencia/Transferencia.vue";
 import Extension from "../components/Extension/Extension.vue";
 import Vinculo from "../components/Vinculo/Vinculo.vue";
+import Socio from "../components/Socio/Socio.vue";
 
 import { mapState } from "vuex";
 export default {
@@ -48,6 +49,7 @@ export default {
     Transferencia,
     Extension,
     Vinculo,
+    Socio
   },
   data() {
     return {};

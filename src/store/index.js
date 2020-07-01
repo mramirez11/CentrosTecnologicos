@@ -139,6 +139,14 @@ export default new Vuex.Store({
     ],
     extension: [{ nombre: "", anio: "", publico: "", nroParticipantes: 0 }],
     vinculo: [{ sector: "", anio: "", socio: "", colaboracion: "" }],
+    socio: [
+      {
+        institucion: "",
+        anio: "",
+        colaboracion: "",
+        sector: "",
+      },
+    ],
   },
   mutations: {
     goTo(state, newRoute) {
@@ -351,7 +359,10 @@ export default new Vuex.Store({
     },
     nuevoVinculo(state) {
       state.vinculo.push({
-        sector: "", anio: "", socio: "", colaboracion: "" 
+        sector: "",
+        anio: "",
+        socio: "",
+        colaboracion: "",
       });
       console.log("Agregado");
     },
@@ -359,6 +370,20 @@ export default new Vuex.Store({
       state.vinculo.splice(index, 1);
       console.log("Elimina2");
     },
+    nuevoSocio(state) {
+      state.socio.push({
+        institucion: "",
+        anio: "",
+        colaboracion: "",
+        sector: "",
+      });
+      console.log("Agregado");
+    },
+    deleteSocio(state, index) {
+      state.socio.splice(index, 1);
+      console.log("Elimina2");
+    },
+
   },
   // Para consumir desde API´s
   actions: {},
