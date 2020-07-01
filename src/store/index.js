@@ -127,7 +127,6 @@ export default new Vuex.Store({
     transferencia: [
       {
         producto: "",
-        responsable: "",
         tipoTT: "",
         detalle: "",
         anioAdjudicacion: "",
@@ -138,6 +137,8 @@ export default new Vuex.Store({
         anio: "",
       },
     ],
+    extension: [{ nombre: "", anio: "", publico: "", nroParticipantes: 0 }],
+    vinculo: [{ sector: "", anio: "", socio: "", colaboracion: "" }],
   },
   mutations: {
     goTo(state, newRoute) {
@@ -320,7 +321,6 @@ export default new Vuex.Store({
     nuevaTransferencia(state) {
       state.transferencia.push({
         producto: "",
-        responsable: "",
         tipoTT: "",
         detalle: "",
         anioAdjudicacion: "",
@@ -334,6 +334,29 @@ export default new Vuex.Store({
     },
     deleteTransferencia(state, index) {
       state.transferencia.splice(index, 1);
+      console.log("Elimina2");
+    },
+    nuevaExtension(state) {
+      state.extension.push({
+        nombre: "",
+        anio: "",
+        publico: "",
+        nroParticipantes: 0,
+      });
+      console.log("Agregado");
+    },
+    deleteExtension(state, index) {
+      state.extension.splice(index, 1);
+      console.log("Elimina2");
+    },
+    nuevoVinculo(state) {
+      state.vinculo.push({
+        sector: "", anio: "", socio: "", colaboracion: "" 
+      });
+      console.log("Agregado");
+    },
+    deleteVinculo(state, index) {
+      state.vinculo.splice(index, 1);
       console.log("Elimina2");
     },
   },

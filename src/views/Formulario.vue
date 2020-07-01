@@ -25,6 +25,8 @@ import EBT from "../components/EBT/EBT.vue";
 import ParticipanteEBT from "../components/EBT/Participante.vue";
 import Servicio from "../components/Servicio/Servicio.vue";
 import Transferencia from "../components/Transferencia/Transferencia.vue";
+import Extension from "../components/Extension/Extension.vue";
+import Vinculo from "../components/Vinculo/Vinculo.vue";
 
 import { mapState } from "vuex";
 export default {
@@ -44,6 +46,8 @@ export default {
     ParticipanteEBT,
     Servicio,
     Transferencia,
+    Extension,
+    Vinculo,
   },
   data() {
     return {};
