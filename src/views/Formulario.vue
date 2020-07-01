@@ -24,6 +24,7 @@ import ParticipanteProyecto from "../components/Proyecto/Participante.vue";
 import EBT from "../components/EBT/EBT.vue";
 import ParticipanteEBT from "../components/EBT/Participante.vue";
 import Servicio from "../components/Servicio/Servicio.vue";
+import Transferencia from "../components/Transferencia/Transferencia.vue";
 
 import { mapState } from "vuex";
 export default {
@@ -42,6 +43,7 @@ export default {
     EBT,
     ParticipanteEBT,
     Servicio,
+    Transferencia,
   },
   data() {
     return {};

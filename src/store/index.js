@@ -124,6 +124,20 @@ export default new Vuex.Store({
         anio: "",
       },
     ],
+    transferencia: [
+      {
+        producto: "",
+        responsable: "",
+        tipoTT: "",
+        detalle: "",
+        anioAdjudicacion: "",
+        estado: "",
+        monto: 0,
+        duracion: 0,
+        gestionDTT: false,
+        anio: "",
+      },
+    ],
   },
   mutations: {
     goTo(state, newRoute) {
@@ -301,6 +315,25 @@ export default new Vuex.Store({
     },
     deleteServicio(state, index) {
       state.servicio.splice(index, 1);
+      console.log("Elimina2");
+    },
+    nuevaTransferencia(state) {
+      state.transferencia.push({
+        producto: "",
+        responsable: "",
+        tipoTT: "",
+        detalle: "",
+        anioAdjudicacion: "",
+        estado: "",
+        monto: 0,
+        duracion: 0,
+        gestionDTT: false,
+        anio: "",
+      });
+      console.log("Agregado");
+    },
+    deleteTransferencia(state, index) {
+      state.transferencia.splice(index, 1);
       console.log("Elimina2");
     },
   },
