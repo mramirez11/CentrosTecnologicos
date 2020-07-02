@@ -24,6 +24,7 @@ export default new Vuex.Store({
     route: "DatosGenerales",
   },
   mutations: {
+    // Para ruta de componentes
     goTo(state, newRoute) {
       console.log(newRoute);
       state.route = newRoute;

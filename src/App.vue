@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :style="{background: $vuetify.theme.themes[theme].background}">
     <v-card class="mx-auto" color="black" max-width="344">
       <NavBar />
     </v-card>
@@ -13,13 +13,17 @@
 import DatosGenerales from "./components/DatosGenerales/DatosGenerales";
 import NavBar from "./components/NavBar";
 
-
 export default {
   name: "App",
 
   components: {
     NavBar,
-    DatosGenerales,
+    DatosGenerales
+  },
+  computed: {
+    theme() {
+      return this.$vuetify.theme.dark ? "dark" : "light";
+    }
   },
 
   data: () => ({})

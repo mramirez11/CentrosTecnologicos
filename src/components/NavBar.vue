@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer class="deep-purple accent-4" width="240" dark app>
+  <v-navigation-drawer class="deep-purple accent-4 ma-4" width="240" dark app>
     <v-list dense>
       <!-- Logo Utalca-->
       <v-list-item>

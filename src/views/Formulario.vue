@@ -1,5 +1,5 @@
-<template>
-  <div>
+<template >
+  <div >
     <!-- <DatosGenerales /> -->
     <!-- KeepAlive guarda los datos en cache /> -->
     <!-- A través del atributo component, se maneja que componente se desplega en el formulario /> -->
