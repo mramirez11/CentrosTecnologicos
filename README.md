@@ -5,6 +5,12 @@
 npm install
 ```
 
+## Project setup VueCli
+```
+vue ui
+```
+
+
 ### Compiles and hot-reloads for development
 ```
 npm run serve
