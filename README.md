@@ -1,5 +1,8 @@
 # centrostecnologicos
 
+Proyecto desarrollado con Vuetify, Vuex, gestionado a través de VueCli
+La base de datos es Oracle 11gR1 y la conexión se realiza a través de PHP 7
+
 ## Project setup
 ```
 npm install
