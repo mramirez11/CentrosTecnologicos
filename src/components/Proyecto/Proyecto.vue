@@ -6,8 +6,8 @@
         <h5 class="font-weight text-h5">Proyectos de Investigación</h5>
       </v-layout>
 
-      <!-- Panel de  -->
-      <v-layout v-for="(item, index) in proyecto" :key="index">
+      <!-- Panel de Proyectos de Investigacion -->
+      <v-layout v-for="(item, index) in proyectoState" :key="index">
         <v-container pb-0 pt-0>
           <v-card color="#F2F2F2" class="mt-6 pl-8 pr-8">
             <v-layout justify-end>
@@ -16,7 +16,7 @@
                 <v-layout justify-center class="pt-2">
                   <h3>{{item.titulo}}</h3>
                 </v-layout>
-                <!-- Boton Eliminar miembro-->
+                <!-- Boton Eliminar Proyecto-->
                 <v-btn icon color="red" @click="deleteProyecto(index)">
                   <v-icon>delete</v-icon>
                 </v-btn>
@@ -26,7 +26,12 @@
             <v-row>
               <!-- Titulo proyecto TextField -->
               <v-col>
-                <v-text-field v-model="item.titulo" label="Titulo proyecto" :rules="inputRules" required></v-text-field>
+                <v-text-field
+                  v-model="item.titulo"
+                  label="Titulo proyecto"
+                  :rules="inputRules"
+                  required
+                ></v-text-field>
               </v-col>
               <!--  Código TextField-->
               <v-col>
@@ -48,7 +53,7 @@
                 <v-text-field
                   v-model="item.anioAdjudicacion"
                   label="Año de adjudicación"
-                  :rules="inputRules"
+                  :rules="inputAño"
                   required
                 ></v-text-field>
               </v-col>
@@ -68,7 +73,7 @@
                 <v-select
                   v-model="item.empresa"
                   label="Empresa participante"
-                  :items="empresa"
+                  :items="empresaState"
                   item-text="nombre"
                   item-value="rut"
                   :rules="inputRules"
@@ -87,7 +92,7 @@
                 <v-text-field
                   v-model="item.anio"
                   label="Año de inicio"
-                  :rules="inputRules"
+                  :rules="inputAño"
                   required
                 ></v-text-field>
               </v-col>
@@ -124,7 +129,7 @@
           </v-card>
         </v-container>
       </v-layout>
-      <!-- Boton agregar Direccion -->
+      <!-- Boton agregar Proyecto -->
       <v-layout class="pt-2 pr-3" flex-row-reverse>
         <v-btn @click="nuevoProyecto" x-small fab dark>
           <v-icon dark>mdi-plus</v-icon>
@@ -138,7 +143,12 @@
 
         <!-- Boton siguiente-->
         <v-layout pt-4 flex-row-reverse>
-          <v-btn :disabled="valid" @click="goTo('ParticipanteProyecto')" color="success" class="mr-4">Siguiente</v-btn>
+          <v-btn
+            :disabled="valid"
+            @click="goTo('ParticipanteProyecto')"
+            color="success"
+            class="mr-4"
+          >Siguiente</v-btn>
         </v-layout>
       </v-row>
     </v-form>
@@ -152,18 +162,17 @@ export default {
       categorias: ["Nacional", "Internacional", "Regional"],
       // Validacion
       inputRules: [v => v.length > 0 || "Requerido"],
-      inputRut: [
-        v => v.length > 7 || "Ingresa un rut válido",
-        v => v.length < 10 || "Ingresa un rut válido"
-      ],
+      inputAño: [v => v.length == 4 || "Formato incorrecto"],
       valid: false
     };
   },
   computed: {
-    ...mapState(["proyecto", "empresa"])
+    ...mapState("Proyecto", ["proyectoState"]),
+    ...mapState("Empresa", ["empresaState"])
   },
   methods: {
-    ...mapMutations(["nuevoProyecto", "deleteProyecto", "goTo"])
+    ...mapMutations("Proyecto", ["nuevoProyecto", "deleteProyecto"]),
+    ...mapMutations(["goTo"])
   }
 };
 </script>

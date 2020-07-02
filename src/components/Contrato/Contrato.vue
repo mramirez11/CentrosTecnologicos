@@ -6,8 +6,8 @@
         <h5 class="font-weight text-h5">Contratos Tecnológicos</h5>
       </v-layout>
 
-      <!-- Panel de  -->
-      <v-layout v-for="(item, index) in contrato" :key="index">
+      <!-- Panel de Contrato -->
+      <v-layout v-for="(item, index) in contratoState" :key="index">
         <v-container pb-0 pt-0>
           <v-card color="#F2F2F2" class="mt-6 pl-8 pr-8">
             <v-layout justify-end>
@@ -16,7 +16,7 @@
                 <v-layout justify-center class="pt-2">
                   <h3>{{item.nombre}} - {{item.anio}}</h3>
                 </v-layout>
-                <!-- Boton Eliminar miembro-->
+                <!-- Boton Eliminar contrato-->
                 <v-btn icon color="red" @click="deleteContrato(index)">
                   <v-icon>delete</v-icon>
                 </v-btn>
@@ -42,7 +42,7 @@
                 <v-select
                   v-model="item.empresa"
                   label="Empresa"
-                  :items="empresa"
+                  :items="empresaState"
                   item-text="nombre"
                   item-value="rut"
                   :rules="inputRules"
@@ -54,7 +54,7 @@
                   v-model="item.anio"
                   type="number"
                   label="Año"
-                  :rules="inputRules"
+                  :rules="inputAño"
                   required
                 ></v-text-field>
               </v-col>
@@ -87,7 +87,7 @@
           </v-card>
         </v-container>
       </v-layout>
-      <!-- Boton agregar Direccion -->
+      <!-- Boton agregar Contrato -->
       <v-layout class="pt-2 pr-3" flex-row-reverse>
         <v-btn @click="nuevoContrato" x-small fab dark>
           <v-icon dark>mdi-plus</v-icon>
@@ -122,18 +122,18 @@ export default {
       ],
       // Validacion
       inputRules: [v => v.length > 0 || "Requerido"],
-      inputRut: [
-        v => v.length > 7 || "Ingresa un rut válido",
-        v => v.length < 10 || "Ingresa un rut válido"
-      ],
+      inputAño: [v => v.length == 4 || "Formato incorrecto"],
       valid: false
     };
   },
   computed: {
-    ...mapState(["contrato", "empresa"])
+    ...mapState("Contrato", ["contratoState"]),
+    ...mapState("Empresa", ["empresaState"])
+
   },
   methods: {
-    ...mapMutations(["nuevoContrato", "deleteContrato", "goTo"])
+    ...mapMutations("Contrato", ["nuevoContrato", "deleteContrato", ]),
+    ...mapMutations(["goTo"])
   }
 };
 </script>

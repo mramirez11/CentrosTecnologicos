@@ -20,7 +20,7 @@ Vue.use(VCurrencyField, {
   decimalLength: 0,
 	min: null,
 	max: null,
-	defaultValue: 0,
+	//defaultValue: 0,
   valueAsInteger: true,
 })
 

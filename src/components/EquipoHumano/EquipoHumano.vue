@@ -6,13 +6,8 @@
         <h5 class="font-weight text-h5">Equipo Humano</h5>
       </v-layout>
 
-      <!-- Boton agregar miembro-->
-      <v-layout flex-row-reverse>
-        <v-btn @click="nuevoMiembro" small>Nuevo miembro</v-btn>
-      </v-layout>
-
       <!-- Panel de miembro -->
-      <v-layout v-for="(miembro, index) in miembrosEH" :key="index">
+      <v-layout v-for="(miembro, index) in personaState" :key="index">
         <v-container pb-0 pt-0>
           <v-card color="#F2F2F2" class="mt-6 pl-8 pr-8">
             <v-layout justify-end>
@@ -36,33 +31,27 @@
               <!-- Rut TextField -->
               <v-col>
                 <v-text-field
-                  type="number"
                   v-model="miembro.rut"
-                  label="Rut(Sin puntos ni guión)"
-                  :rules="inputRut"
+                  label="Rut(Sin puntos, solo guión)"
+                  :rules="[validaRut]"
                   required
-                  min=0
+                  min="0"
                 ></v-text-field>
               </v-col>
               <!-- Género  Selected-->
               <v-col>
-                <v-select v-model="miembro.generoSeleccionado" label="Género" :items="genero"></v-select>
+                <v-select v-model="miembro.genero" label="Género" :items="genero"></v-select>
               </v-col>
             </v-row>
             <v-row>
               <!-- Cargo  Selected-->
               <v-col>
-                <v-select
-                  v-model="miembro.cargoSeleccionado"
-                  label="Cargo"
-                  :items="cargo"
-                  :rules="inputRules"
-                ></v-select>
+                <v-select v-model="miembro.rol" label="Cargo" :items="cargo" :rules="inputRules"></v-select>
               </v-col>
               <!-- Funciones Selected-->
               <v-col>
                 <v-select
-                  v-model="miembro.funcionSeleccionada"
+                  v-model="miembro.funcion"
                   label="Funciones"
                   :items="funciones"
                   :rules="inputRules"
@@ -71,7 +60,7 @@
               <!-- Tipo Contrato Selected-->
               <v-col>
                 <v-select
-                  v-model="miembro.tipoContratoSeleccionado"
+                  v-model="miembro.tipoContrato"
                   label="Tipo Contrato"
                   :items="tipoContrato"
                   :rules="inputRules"
@@ -81,6 +70,12 @@
           </v-card>
         </v-container>
       </v-layout>
+      <!-- Boton agregar miembro -->
+      <v-layout class="pt-2 pr-3" flex-row-reverse>
+        <v-btn @click="nuevoMiembro" x-small fab dark>
+          <v-icon dark>mdi-plus</v-icon>
+        </v-btn>
+      </v-layout>
       <v-row align-end justify-end>
         <!-- Boton volver-->
         <v-layout pt-4>
@@ -89,7 +84,12 @@
 
         <!-- Boton siguiente-->
         <v-layout pt-4 flex-row-reverse>
-          <v-btn :disabled="valid" @click="goTo('InstanciasParticipacion')" color="success" class="mr-4">Siguiente</v-btn>
+          <v-btn
+            :disabled="valid"
+            @click="goTo('InstanciasParticipacion')"
+            color="success"
+            class="mr-4"
+          >Siguiente</v-btn>
         </v-layout>
       </v-row>
     </v-form>
@@ -135,18 +135,34 @@ export default {
       ],
       // Validacion
       inputRules: [v => v.length > 0 || "Requerido"],
-      inputRut: [
-        v => v.length > 7  || "Ingresa un rut válido",
-        v =>  v.length < 10 || "Ingresa un rut válido"
-      ],
+
       valid: false
     };
   },
   computed: {
-    ...mapState(["miembrosEH"])
+    ...mapState("EquipoHumano", ["personaState"])
   },
   methods: {
-    ...mapMutations(["nuevoMiembro", "deleteMiembro", "goTo"])
+    ...mapMutations(["goTo"]),
+    ...mapMutations("EquipoHumano", ["nuevoMiembro", "deleteMiembro"]),
+    //Para validar rut
+    // Valida el rut con su cadena completa "XXXXXXXX-X"
+    validaRut: function(rutCompleto) {
+      rutCompleto = rutCompleto.replace("‐", "-");
+      if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(rutCompleto)) return false;
+      var tmp = rutCompleto.split("-");
+      var digv = tmp[1];
+      var rut = tmp[0];
+      if (digv == "K") digv = "k";
+      return this.dv(rut) == digv;
+    },
+    dv: function(T) {
+      var M = 0,
+        S = 1;
+      for (; T; T = Math.floor(T / 10))
+        S = (S + (T % 10) * (9 - (M++ % 6))) % 11;
+      return S ? S - 1 : "k";
+    }
   }
 };
 </script>

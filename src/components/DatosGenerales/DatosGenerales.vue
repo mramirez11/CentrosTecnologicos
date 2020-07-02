@@ -69,8 +69,7 @@
           <Contacto />
 
           <!-- Direccion Component -->
-
-          <v-layout v-for="(direccion, index) in direcciones" :key="index">
+          <v-layout v-for="(direccion, index) in direccionesState" :key="index">
             <v-container pb-0 pt-0>
               <v-card color="#F2F2F2" class="mt-6 pl-8 pr-8">
                 <v-layout justify-end>
@@ -106,7 +105,7 @@
                   <!--  Region Select-->
                   <v-col>
                     <v-select
-                      v-model="direccion.regionSeleccionada"
+                      v-model="direccion.region"
                       label="Region"
                       :items="regiones"
                       item-text="region"
@@ -123,29 +122,75 @@
               </v-card>
             </v-container>
           </v-layout>
+
           <!-- Boton agregar Direccion -->
           <v-layout class="pt-2 pr-3" flex-row-reverse>
             <v-btn @click="nuevaDireccion" x-small fab dark>
               <v-icon dark>mdi-plus</v-icon>
             </v-btn>
           </v-layout>
-          <!-- Director y Gerente Components -->
-          <v-row>
-            <v-col>
-              <v-layout justify-center class="mt-2">
-                <h1 class="text-h6">Director</h1>
-              </v-layout>
-              <v-layout>
-                <PanelEH />
-              </v-layout>
-            </v-col>
-            <v-col>
-              <v-layout justify-center class="mt-2">
-                <h1 class="text-h6">Gerente</h1>
-              </v-layout>
-              <PanelEH />
-            </v-col>
-          </v-row>
+
+          <!-- Personal Component -->
+          <v-layout v-for="(item, index) in personaState" :key="'P'+ index">
+            <v-container>
+              <v-card color="#F2F2F2" class="mt-6 pl-8 pr-8">
+                <v-layout justify-end>
+                  <v-layout>
+                    <!-- Titulo -->
+                    <v-layout justify-center class="mt-2">
+                      <h1 class="text-h6">{{item.rol}}</h1>
+                    </v-layout>
+                    <!-- Boton Eliminar EBT -->
+                    <v-btn icon color="red" @click="deleteParticipante(index)">
+                      <v-icon>delete</v-icon>
+                    </v-btn>
+                  </v-layout>
+                </v-layout>
+                <v-row>
+                  <v-col>
+                    <v-layout>
+                      <!-- Rol  Selected-->
+                      <v-col>
+                        <v-select v-model="item.rol" label="Rol" :items="roles" :rules="inputRules"></v-select>
+                      </v-col>
+                      <!-- Nombre TextField -->
+                      <v-col>
+                        <v-text-field
+                          v-model="item.nombre"
+                          label="Nombre"
+                          :rules="inputRules"
+                          required
+                        ></v-text-field>
+                      </v-col>
+
+                      <!-- Rut TextField -->
+                      <v-col>
+                        <v-text-field
+                          v-model="item.rut"
+                          label="Rut(Sin puntos, solo guión)"
+                          :rules="[ validaRut ]"
+                          required
+                          min="0"
+                        ></v-text-field>
+                      </v-col>
+
+                      <!-- Género  Selected-->
+                      <v-col>
+                        <v-select v-model="item.genero" label="Género" :items="genero"></v-select>
+                      </v-col>
+                    </v-layout>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </v-container>
+          </v-layout>
+          <!-- Boton agregar Participante -->
+          <v-layout class="pt-2 pr-3" flex-row-reverse>
+            <v-btn @click="nuevoParticipante" x-small fab dark>
+              <v-icon dark>mdi-plus</v-icon>
+            </v-btn>
+          </v-layout>
+
           <!-- Boton siguiente-->
           <v-layout pt-4 flex-row-reverse>
             <v-btn
@@ -161,7 +206,6 @@
   </v-container>
 </template>
 <script>
-import PanelEH from "@/components/DatosGenerales/PanelEH";
 import Contacto from "@/components/DatosGenerales/Contacto";
 // Para importar json desde archivo local
 import regionesJSON from "@/assets/json/regiones.json";
@@ -169,7 +213,6 @@ import { mapState, mapMutations } from "vuex";
 
 export default {
   components: {
-    PanelEH,
     Contacto
   },
   name: "DatosGenerales",
@@ -191,14 +234,44 @@ export default {
       menu: false,
       // Direccion
       tipo: ["Principal", "Sede"],
-      regiones: regionesJSON
+      regiones: regionesJSON,
+      genero: ["Masculino", "Femenino"],
+      roles: ["Director", "Gerente"]
     };
   },
   computed: {
-    ...mapState(["direcciones"])
+    // DatosGenerales para llamar al namespaced, direccionesState y personaState es para los datos
+    ...mapState("DatosGenerales", ["direccionesState", "personaState"])
   },
   methods: {
-    ...mapMutations(["nuevaDireccion", "deleteDireccion", "goTo"])
+    // Direcciones para el namespaced y traer sus respectivas mutationes
+    ...mapMutations("DatosGenerales", [
+      "nuevaDireccion",
+      "deleteDireccion",
+      "nuevoParticipante",
+      "deleteParticipante"
+    ]),
+    // Para traer goTo directo desde index.js
+    ...mapMutations(["goTo"]),
+
+    //Para validar rut
+    // Valida el rut con su cadena completa "XXXXXXXX-X"
+    validaRut: function(rutCompleto) {
+      rutCompleto = rutCompleto.replace("‐", "-");
+      if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(rutCompleto)) return false;
+      var tmp = rutCompleto.split("-");
+      var digv = tmp[1];
+      var rut = tmp[0];
+      if (digv == "K") digv = "k";
+      return this.dv(rut) == digv;
+    },
+    dv: function(T) {
+      var M = 0,
+        S = 1;
+      for (; T; T = Math.floor(T / 10))
+        S = (S + (T % 10) * (9 - (M++ % 6))) % 11;
+      return S ? S - 1 : "k";
+    }
   }
 };
 </script>

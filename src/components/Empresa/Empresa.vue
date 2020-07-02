@@ -6,8 +6,8 @@
         <h5 class="font-weight text-h5">Detalle Empresa</h5>
       </v-layout>
 
-      <!-- Panel de  -->
-      <v-layout v-for="(item, index) in empresa" :key="index">
+      <!-- Panel de Empresa -->
+      <v-layout v-for="(item, index) in empresaState" :key="index">
         <v-container pb-0 pt-0>
           <v-card color="#F2F2F2" class="mt-6 pl-8 pr-8">
             <v-layout justify-end>
@@ -36,10 +36,9 @@
               <!-- Rut TextField -->
               <v-col>
                 <v-text-field
-                  type="number"
                   v-model="item.rut"
-                  label="Rut(Sin puntos ni guión)"
-                  :rules="inputRut"
+                  label="Rut(Sin puntos, solo guión)"
+                  :rules="[ validaRut ]"
                   required
                   min="0"
                 ></v-text-field>
@@ -113,7 +112,7 @@
           </v-card>
         </v-container>
       </v-layout>
-      <!-- Boton agregar Direccion -->
+      <!-- Boton agregar Empresa -->
       <v-layout class="pt-2 pr-3" flex-row-reverse>
         <v-btn @click="nuevaEmpresa" x-small fab dark>
           <v-icon dark>mdi-plus</v-icon>
@@ -143,10 +142,6 @@ export default {
       regiones: regionesJSON,
       // Validacion
       inputRules: [v => v.length > 0 || "Requerido"],
-      inputRut: [
-        v => v.length > 7 || "Ingresa un rut válido",
-        v => v.length < 10 || "Ingresa un rut válido"
-      ],
       valid: false,
       emailRules: [
         v => !!v || "Correo Electronico es requerido",
@@ -155,10 +150,29 @@ export default {
     };
   },
   computed: {
-    ...mapState(["empresa"])
+    ...mapState("Empresa", ["empresaState"])
   },
   methods: {
-    ...mapMutations(["nuevaEmpresa", "deleteEmpresa", "goTo"])
+    ...mapMutations("Empresa", ["nuevaEmpresa", "deleteEmpresa"]),
+    ...mapMutations(["goTo"]),
+    //Para validar rut
+    // Valida el rut con su cadena completa "XXXXXXXX-X"
+    validaRut: function(rutCompleto) {
+      rutCompleto = rutCompleto.replace("‐", "-");
+      if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(rutCompleto)) return false;
+      var tmp = rutCompleto.split("-");
+      var digv = tmp[1];
+      var rut = tmp[0];
+      if (digv == "K") digv = "k";
+      return this.dv(rut) == digv;
+    },
+    dv: function(T) {
+      var M = 0,
+        S = 1;
+      for (; T; T = Math.floor(T / 10))
+        S = (S + (T % 10) * (9 - (M++ % 6))) % 11;
+      return S ? S - 1 : "k";
+    }
   }
 };
 </script>

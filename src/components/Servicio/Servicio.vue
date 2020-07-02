@@ -6,8 +6,8 @@
         <h5 class="font-weight text-h5">Servicios Tecnológicos</h5>
       </v-layout>
 
-      <!-- Panel de  -->
-      <v-layout v-for="(item, index) in servicio" :key="index">
+      <!-- Panel de Servicios -->
+      <v-layout v-for="(item, index) in servicioState" :key="index">
         <v-container pb-0 pt-0>
           <v-card color="#F2F2F2" class="mt-6 pl-8 pr-8">
             <v-layout justify-end>
@@ -16,7 +16,7 @@
                 <v-layout justify-center class="pt-2">
                   <h3>{{item.tipo}}</h3>
                 </v-layout>
-                <!-- Boton Eliminar miembro-->
+                <!-- Boton Eliminar Servicio-->
                 <v-btn icon color="red" @click="deleteServicio(index)">
                   <v-icon>delete</v-icon>
                 </v-btn>
@@ -99,7 +99,7 @@
       <v-row align-end justify-end>
         <!-- Boton volver-->
         <v-layout pt-4>
-          <v-btn @click="goTo('EBT')" color="success" class="mr-4">Volver</v-btn>
+          <v-btn @click="goTo('ParticipanteEBT')" color="success" class="mr-4">Volver</v-btn>
         </v-layout>
 
         <!-- Boton siguiente-->
@@ -123,10 +123,11 @@ export default {
     };
   },
   computed: {
-    ...mapState(["servicio"])
+    ...mapState("Servicio", ["servicioState"])
   },
   methods: {
-    ...mapMutations(["nuevoServicio", "deleteServicio", "goTo"])
+    ...mapMutations("Servicio", ["nuevoServicio", "deleteServicio", ]),
+    ...mapMutations(["goTo"])
   }
 };
 </script>

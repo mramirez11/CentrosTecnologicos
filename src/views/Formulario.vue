@@ -11,7 +11,7 @@
 
 <script>
 import DatosGenerales from "@/components/DatosGenerales/DatosGenerales.vue";
-import PyGEstrategica from "../components/PygEstrategica/PygEstrategica.vue";
+import PyGEstrategica from "../components/PyGEstrategica/PyGEstrategica.vue";
 import EquipoHumano from "../components/EquipoHumano/EquipoHumano.vue";
 import InstanciasParticipacion from "../components/Instancias/InstanciasParticipacion.vue";
 import InstanciasCaracter from "../components/Instancias/InstanciasCaracter.vue";

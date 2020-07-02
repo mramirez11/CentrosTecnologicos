@@ -6,8 +6,8 @@
         <h5 class="font-weight text-h5">Transferencia Tecnológica</h5>
       </v-layout>
 
-      <!-- Panel de  -->
-      <v-layout v-for="(item, index) in transferencia" :key="index">
+      <!-- Panel de Transferencia -->
+      <v-layout v-for="(item, index) in transferenciaState" :key="index">
         <v-container pb-0 pt-0>
           <v-card color="#F2F2F2" class="mt-6 pl-8 pr-8">
             <v-layout justify-end>
@@ -50,6 +50,7 @@
                   label="Año adjudicación"
                   :rules="inputAño"
                   required
+                  min="0"
                 ></v-text-field>
               </v-col>
               <!-- Duracion TextField -->
@@ -82,6 +83,7 @@
                   label="Año actual"
                   :rules="inputAño"
                   required
+                  min="0"
                 ></v-text-field>
               </v-col>
 
@@ -143,10 +145,14 @@ export default {
     };
   },
   computed: {
-    ...mapState(["transferencia"])
+    ...mapState("Transferencia", ["transferenciaState"])
   },
   methods: {
-    ...mapMutations(["nuevaTransferencia", "deleteTransferencia", "goTo"])
+    ...mapMutations("Transferencia", [
+      "nuevaTransferencia",
+      "deleteTransferencia"
+    ]),
+    ...mapMutations(["goTo"])
   }
 };
 </script>

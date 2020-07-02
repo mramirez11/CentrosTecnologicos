@@ -5,21 +5,20 @@
       <v-layout justify-center class="pb-5 pt-3 blue--text">
         <h5 class="font-weight text-h5">Infraestructura</h5>
       </v-layout>
-
       <!-- Panel -->
       <v-layout>
         <v-container pb-0 pt-0>
           <v-card color="#F2F2F2" class="mt-6 pl-8 pr-8">
             <!-- Panel -->
-            <v-row >
+            <v-row>
               <!-- Donde funciona CT -->
-              <v-layout >
+              <v-layout>
                 <!-- CheckBox -->
-                <v-layout >
+                <v-layout>
                   <v-col>
                     <h4>¿Donde funciona el Centro Tecnológico?</h4>
                     <v-col>
-                      <v-radio-group required v-model="infraestructura.localizacion" column>
+                      <v-radio-group required v-model="infraestructuraState.localizacion" column>
                         <v-radio label="Dentro de la facultad" value="Dentro de la Facultad"></v-radio>
                         <v-radio label="Fuera de la Facultad" value="Fuera de la Facultad"></v-radio>
                       </v-radio-group>
@@ -31,7 +30,7 @@
                   <v-col>
                     <v-text-field
                       type="number"
-                      v-model="infraestructura.cantOficinas"
+                      v-model="infraestructuraState.cantOficinas"
                       label="N° Oficinas"
                       :rules="inputRules"
                       required
@@ -46,7 +45,7 @@
               <!--Labotorios? -->
               <v-layout>
                 <!-- CheckBox -->
-                <v-layout >
+                <v-layout>
                   <v-col>
                     <h4>¿El centro cuenta con laboratorios?</h4>
                     <v-col>
@@ -62,7 +61,7 @@
                   <v-col>
                     <v-text-field
                       type="number"
-                      v-model="infraestructura.Mt"
+                      v-model="infraestructuraState.Mt"
                       label="Cantidad metros cuadrados"
                       :rules="inputRules"
                       required
@@ -77,11 +76,11 @@
               <!--Equipamiento tecnológico? -->
               <v-layout class="align-items: stretch">
                 <!-- CheckBox -->
-                <v-layout >
+                <v-layout>
                   <v-col>
                     <h4>¿El centro cuenta con equipamiento tecnológico propio?</h4>
                     <v-col>
-                      <v-radio-group  v-model="equip" column>
+                      <v-radio-group v-model="equip" column>
                         <v-radio label="Si"></v-radio>
                         <v-radio label="No"></v-radio>
                       </v-radio-group>
@@ -89,18 +88,14 @@
                   </v-col>
                 </v-layout>
                 <!--  Valor avaluo Selected -->
-                <v-layout warning v-if="!equip" justify-center align-center>
+                <v-layout v-if="!equip" justify-center align-center>
                   <v-col>
-                    <v-text-field
-                      type="number"
-                      v-model="infraestructura.valorAvaluo"
+                    <v-currency-field
+                      v-model="infraestructuraState.valorAvaluo"
                       label="Indique avalúo"
-                      :rules="inputRules"
-                      required
-                      min="0"
-                    ></v-text-field>
+                      :rules="inputMonto"
+                    ></v-currency-field>
                   </v-col>
-                  
                 </v-layout>
               </v-layout>
             </v-row>
@@ -115,7 +110,12 @@
 
         <!-- Boton siguiente-->
         <v-layout pt-4 flex-row-reverse>
-          <v-btn :disabled="valid" @click="goTo('FlujosPresupuestarios')" color="success" class="mr-4">Siguiente</v-btn>
+          <v-btn
+            :disabled="valid"
+            @click="goTo('FlujosPresupuestarios')"
+            color="success"
+            class="mr-4"
+          >Siguiente</v-btn>
         </v-layout>
       </v-row>
     </v-form>
@@ -129,13 +129,14 @@ export default {
     return {
       // Validacion
       inputRules: [v => v > 0 || "Requerido"],
+      inputMonto: [v => v.length > 0 || "Requerido"],
       valid: false,
       lab: true,
-      equip: true,
+      equip: true
     };
   },
   computed: {
-    ...mapState(["infraestructura"])
+    ...mapState("Infraestructura", ["infraestructuraState"])
   },
   methods: {
     ...mapMutations(["goTo"])

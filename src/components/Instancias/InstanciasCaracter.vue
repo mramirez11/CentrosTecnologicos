@@ -7,7 +7,7 @@
       </v-layout>
 
       <!-- Panel de  -->
-      <v-layout v-for="(item, index) in instanciasCaracter " :key="index">
+      <v-layout v-for="(item, index) in caracterState " :key="index">
         <v-container pb-0 pt-0>
           <v-card color="#F2F2F2" class="mt-6 pl-8 pr-8">
             <v-layout justify-end>
@@ -16,7 +16,7 @@
                 <v-layout justify-center class="pt-2">
                   <h3>Miembro</h3>
                 </v-layout>
-                <!-- Boton Eliminar miembro-->
+                <!-- Boton Eliminar Instancia-->
                 <v-btn icon color="red" @click="deleteInstanciaCaracter(index)">
                   <v-icon>delete</v-icon>
                 </v-btn>
@@ -64,7 +64,12 @@
 
         <!-- Boton siguiente-->
         <v-layout pt-4 flex-row-reverse>
-          <v-btn :disabled="valid" @click="goTo('Infraestructura')" color="success" class="mr-4">Siguiente</v-btn>
+          <v-btn
+            :disabled="valid"
+            @click="goTo('Infraestructura')"
+            color="success"
+            class="mr-4"
+          >Siguiente</v-btn>
         </v-layout>
       </v-row>
     </v-form>
@@ -87,14 +92,14 @@ export default {
     };
   },
   computed: {
-    ...mapState(["instanciasCaracter"])
+    ...mapState("Instancias", ["caracterState"])
   },
   methods: {
-    ...mapMutations([
+    ...mapMutations("Instancias", [
       "nuevaInstanciaCaracter",
-      "deleteInstanciaCaracter",
-      "goTo"
-    ])
+      "deleteInstanciaCaracter"
+    ]),
+    ...mapMutations(["goTo"])
   }
 };
 </script>

@@ -15,20 +15,15 @@
                 <!--  Descripcion TextArea-->
                 <v-col>
                   <v-textarea
-                   rows="4"
+                    counter
                     label="Descripcion"
-                    v-model="descripcion"
-                    :rules="inputRules"
+                    v-model="pygState.descripcion"
+                    required
                   ></v-textarea>
                 </v-col>
                 <!--  Objetivos TextArea-->
                 <v-col>
-                  <v-textarea
-                    rows="4"
-                    label="Objetivos"
-                    v-model="objetivos"
-                    :rules="inputRules"
-                  ></v-textarea>
+                  <v-textarea rows="4" label="Objetivos" v-model="pygState.objetivo" required></v-textarea>
                 </v-col>
               </v-row>
             </v-card>
@@ -42,8 +37,8 @@
                   <v-textarea
                     rows="4"
                     label="Lineas de Investigacion"
-                    v-model="lineasInvestigacion"
-                    :rules="inputRules"
+                    v-model="pygState.lineasInvestigacion"
+                    required
                   ></v-textarea>
                 </v-col>
                 <!--  Servicios Tecnológicos TextArea -->
@@ -51,8 +46,8 @@
                   <v-textarea
                     rows="4"
                     label="Servicios Tecnológicos"
-                    v-model="serviciosTecnologicos"
-                    :rules="inputRules"
+                    v-model="pygState.servicioTecnologico"
+                    required
                   ></v-textarea>
                 </v-col>
               </v-row>
@@ -64,20 +59,15 @@
               <v-row>
                 <!--  Productos TextArea -->
                 <v-col>
-                  <v-textarea
-                    rows="4"
-                    label="Productos"
-                    v-model="productos"
-                    :rules="inputRules"
-                  ></v-textarea>
+                  <v-textarea rows="4" label="Productos" v-model="pygState.producto" required></v-textarea>
                 </v-col>
                 <!--  Formacion de Capital Humano TextArea -->
                 <v-col>
                   <v-textarea
                     rows="4"
                     label="Formacion de Capital Humano"
-                    v-model="formacion"
-                    :rules="inputRules"
+                    v-model="pygState.formacion"
+                    required
                   ></v-textarea>
                 </v-col>
               </v-row>
@@ -92,7 +82,12 @@
 
             <!-- Boton siguiente-->
             <v-layout pt-4 flex-row-reverse>
-              <v-btn :disabled="valid" @click="goTo('EquipoHumano')" color="success" class="mr-4">Siguiente</v-btn>
+              <v-btn
+                :disabled="!valid"
+                @click="goTo('EquipoHumano')"
+                color="success"
+                class="mr-4"
+              >Siguiente</v-btn>
             </v-layout>
           </v-row>
         </v-form>
@@ -103,20 +98,15 @@
 <script>
 import { mapState, mapMutations } from "vuex";
 export default {
+  name: "PyGEstrategica",
   data() {
     return {
       // Para validar
       valid: false,
-      inputRules: [v => v.length > 0 || "Requerido"],
-
-      // Datos formulario
-      descripcion: "",
-      objetivos: "",
-      lineasInvestigacion: "",
-      serviciosTecnologicos: "",
-      productos: "",
-      formacion: ""
     };
+  },
+  computed: {
+    ...mapState("PyGEstrategica", ["pygState"])
   },
   methods: {
     ...mapMutations(["goTo"])

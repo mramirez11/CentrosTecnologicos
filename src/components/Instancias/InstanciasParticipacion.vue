@@ -7,7 +7,7 @@
       </v-layout>
 
       <!-- Panel de Instancias -->
-      <v-layout v-for="(item, index) in instanciasParticipacion" :key="index">
+      <v-layout v-for="(item, index) in participacionState" :key="index">
         <v-container pb-0 pt-0>
           <v-card color="#F2F2F2" class="mt-6 pl-8 pr-8">
             <v-layout justify-end>
@@ -16,7 +16,7 @@
                 <v-layout justify-center class="pt-2">
                   <h3>Comité Asesor</h3>
                 </v-layout>
-                <!-- Boton Eliminar miembro-->
+                <!-- Boton Eliminar instancia-->
                 <v-btn icon color="red" @click="deleteInstanciaParticipacion(index)">
                   <v-icon>delete</v-icon>
                 </v-btn>
@@ -36,21 +36,16 @@
               <!-- Rut TextField -->
               <v-col>
                 <v-text-field
-                  type="number"
                   v-model="item.rut"
-                  label="Rut(Sin puntos ni guión)"
-                  :rules="inputRut"
-                  min=0
+                  label="Rut(Sin puntos, solo guión)"
+                  :rules="[ validaRut ]"
                   required
+                  min="0"
                 ></v-text-field>
               </v-col>
               <!--  Género Selected-->
               <v-col>
-                <v-select
-                  v-model="item.generoSeleccionado"
-                  label="Género"
-                  :items="genero"
-                ></v-select>
+                <v-select v-model="item.generoSeleccionado" label="Género" :items="genero"></v-select>
               </v-col>
               <!-- Cargo Selected-->
               <v-col>
@@ -89,12 +84,12 @@
           </v-card>
         </v-container>
       </v-layout>
-      <!-- Boton agregar Direccion -->
-          <v-layout class="pt-2 pr-3" flex-row-reverse>
-            <v-btn @click="nuevaInstanciaParticipacion" x-small fab dark>
-              <v-icon dark>mdi-plus</v-icon>
-            </v-btn>
-          </v-layout>
+      <!-- Boton agregar participacion -->
+      <v-layout class="pt-2 pr-3" flex-row-reverse>
+        <v-btn @click="nuevaInstanciaParticipacion" x-small fab dark>
+          <v-icon dark>mdi-plus</v-icon>
+        </v-btn>
+      </v-layout>
       <v-row align-end justify-end>
         <!-- Boton volver-->
         <v-layout pt-4>
@@ -103,7 +98,12 @@
 
         <!-- Boton siguiente-->
         <v-layout pt-4 flex-row-reverse>
-          <v-btn :disabled="valid" @click="goTo('InstanciasCaracter')" color="success" class="mr-4">Siguiente</v-btn>
+          <v-btn
+            :disabled="valid"
+            @click="goTo('InstanciasCaracter')"
+            color="success"
+            class="mr-4"
+          >Siguiente</v-btn>
         </v-layout>
       </v-row>
     </v-form>
@@ -121,22 +121,37 @@ export default {
       tipos: ["Nacional", "Regional"],
       // Validacion
       inputRules: [v => v.length > 0 || "Requerido"],
-      inputRut: [
-        v => v.length > 7 || "Ingresa un rut válido",
-        v => v.length < 10 || "Ingresa un rut válido"
-      ],
+
       valid: false
     };
   },
   computed: {
-    ...mapState(["instanciasParticipacion"])
+    ...mapState("Instancias", ["participacionState"])
   },
   methods: {
-    ...mapMutations([
+    ...mapMutations("Instancias", [
       "nuevaInstanciaParticipacion",
-      "deleteInstanciaParticipacion",
-      "goTo"
-    ])
+      "deleteInstanciaParticipacion"
+    ]),
+    ...mapMutations(["goTo"]),
+    //Para validar rut
+    // Valida el rut con su cadena completa "XXXXXXXX-X"
+    validaRut: function(rutCompleto) {
+      rutCompleto = rutCompleto.replace("‐", "-");
+      if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(rutCompleto)) return false;
+      var tmp = rutCompleto.split("-");
+      var digv = tmp[1];
+      var rut = tmp[0];
+      if (digv == "K") digv = "k";
+      return this.dv(rut) == digv;
+    },
+    dv: function(T) {
+      var M = 0,
+        S = 1;
+      for (; T; T = Math.floor(T / 10))
+        S = (S + (T % 10) * (9 - (M++ % 6))) % 11;
+      return S ? S - 1 : "k";
+    }
   }
 };
 </script>

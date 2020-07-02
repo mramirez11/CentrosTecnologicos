@@ -7,7 +7,7 @@
       </v-layout>
 
       <!-- Panel de  -->
-      <v-layout v-for="(item, index) in vinculo" :key="index">
+      <v-layout v-for="(item, index) in vinculoState" :key="index">
         <v-container pb-0 pt-0>
           <v-card color="#F2F2F2" class="mt-6 pl-8 pr-8">
             <v-layout justify-end>
@@ -28,7 +28,7 @@
               <v-col>
                 <v-select
                   v-model="item.sector"
-                  label="Sectores"
+                  label="Sector"
                   :items="sectores"
                   :rules="inputRules"
                   required
@@ -44,7 +44,7 @@
                   required
                 ></v-select>
               </v-col>
-              
+
               <!-- Tipo de colaboración TextField -->
               <v-col>
                 <v-select
@@ -55,7 +55,7 @@
                   required
                 ></v-select>
               </v-col>
-              
+
               <!-- Año actual TextField -->
               <v-col>
                 <v-text-field
@@ -64,6 +64,7 @@
                   label="Año actual"
                   :rules="inputAño"
                   required
+                  min="0"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -80,7 +81,7 @@
       <v-row align-end justify-end>
         <!-- Boton volver-->
         <v-layout pt-4>
-          <v-btn @click="goTo('Transferencia')" color="success" class="mr-4">Volver</v-btn>
+          <v-btn @click="goTo('Extension')" color="success" class="mr-4">Volver</v-btn>
         </v-layout>
 
         <!-- Boton siguiente-->
@@ -96,23 +97,26 @@ import { mapState, mapMutations } from "vuex";
 export default {
   data() {
     return {
-      sectores: [
-        "Público",
-        "Privado",
+      sectores: ["Público", "Privado", "Otros"],
+      socios: ["Empresas", "Asoc. Gremiales", "Otros"],
+      tipos: [
+        "Postulación proyecto I+D",
+        "Levantamiento y difusión de información",
+        "Actividades de transferencia tecnológica e innovación",
+        "Actividades de docencia",
         "Otros"
-      ],
-      socios:["Empresas", "Asoc. Gremiales", "Otros"],
-      tipos: ["Postulación proyecto I+D", "Levantamiento y difusión de información", "Actividades de transferencia tecnológica e innovación", "Actividades de docencia", "Otros"],      // Validacion
+      ], // Validacion
       inputRules: [v => v.length > 0 || "Requerido"],
       inputAño: [v => v.length == 4 || "Ingresa un año válido"],
       valid: false
     };
   },
   computed: {
-    ...mapState(["vinculo"])
+    ...mapState("Vinculo", ["vinculoState"])
   },
   methods: {
-    ...mapMutations(["nuevoVinculo", "deleteVinculo", "goTo"])
+    ...mapMutations("Vinculo", ["nuevoVinculo", "deleteVinculo"]),
+    ...mapMutations(["goTo"])
   }
 };
 </script>

@@ -6,8 +6,8 @@
         <h5 class="font-weight text-h5">Flujos Presupuestarios</h5>
       </v-layout>
 
-      <!-- Panel de  -->
-      <v-layout v-for="(item, index) in flujos " :key="index">
+      <!-- Panel de Flujos -->
+      <v-layout v-for="(item, index) in flujoState " :key="index">
         <v-container pb-0 pt-0>
           <v-card color="#F2F2F2" class="mt-6 pl-8 pr-8">
             <v-layout justify-end>
@@ -16,7 +16,7 @@
                 <v-layout justify-center class="pt-2">
                   <h3>Ingresos año {{item.anio}}</h3>
                 </v-layout>
-                <!-- Boton Eliminar miembro-->
+                <!-- Boton Eliminar Flujo-->
                 <v-btn icon color="red" @click="deleteFlujo(index)">
                   <v-icon>delete</v-icon>
                 </v-btn>
@@ -30,7 +30,7 @@
                   v-model="item.anio"
                   type="number"
                   label="Año"
-                  :rules="inputRules"
+                  :rules="inputAño"
                   required
                 ></v-text-field>
               </v-col>
@@ -66,7 +66,7 @@
               </v-col>
               <!-- Ingresos por Contrato TextField -->
               <v-col>
-                <v-currency-field v-model="item.contratos" label="Contrato" :rules="inputRules"></v-currency-field>
+                <v-currency-field v-model="item.contrato" label="Contrato" :rules="inputRules"></v-currency-field>
               </v-col>
               <!-- Ingresos por Egreso Promedio anual TextField -->
               <v-col>
@@ -115,16 +115,18 @@ export default {
     return {
       // Validacion
       inputRules: [v => v.length > 0 || "Requerido"],
+      inputAño: [v => v.length == 4 || "Formato incorrecto"],
       valid: false,
 
       rate: 0
     };
   },
   computed: {
-    ...mapState(["flujos"])
+    ...mapState("FlujosPresupuestarios", ["flujoState"])
   },
   methods: {
-    ...mapMutations(["nuevoFlujo", "deleteFlujo", "goTo"])
+    ...mapMutations("FlujosPresupuestarios", ["nuevoFlujo", "deleteFlujo"]),
+    ...mapMutations(["goTo"])
   }
 };
 </script>

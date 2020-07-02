@@ -6,17 +6,17 @@
         <h5 class="font-weight text-h5">Actividades de Extensión</h5>
       </v-layout>
 
-      <!-- Panel de  -->
-      <v-layout v-for="(item, index) in extension" :key="index">
+      <!-- Panel de Extension -->
+      <v-layout v-for="(item, index) in extensionState" :key="index">
         <v-container pb-0 pt-0>
           <v-card color="#F2F2F2" class="mt-6 pl-8 pr-8">
             <v-layout justify-end>
               <v-layout>
                 <!-- Titulo -->
                 <v-layout justify-center class="pt-2">
-                  <h3>Titulo {{item.nombre}}</h3>
+                  <h3> {{item.nombre}}</h3>
                 </v-layout>
-                <!-- Boton Eliminar miembro-->
+                <!-- Boton Eliminar Extension-->
                 <v-btn icon color="red" @click="deleteExtension(index)">
                   <v-icon>delete</v-icon>
                 </v-btn>
@@ -51,6 +51,7 @@
                   label="N° Participantes"
                   :rules="inputRules"
                   required
+                  min="0"
                 ></v-text-field>
               </v-col>
               <!-- Año actual TextField -->
@@ -61,10 +62,10 @@
                   label="Año actual"
                   :rules="inputAño"
                   required
+                  min="0"
                 ></v-text-field>
               </v-col>
             </v-row>
-            <v-row></v-row>
           </v-card>
         </v-container>
       </v-layout>
@@ -107,10 +108,11 @@ export default {
     };
   },
   computed: {
-    ...mapState(["extension"])
+    ...mapState("Extension", ["extensionState"])
   },
   methods: {
-    ...mapMutations(["nuevaExtension", "deleteExtension", "goTo"])
+    ...mapMutations("Extension", ["nuevaExtension", "deleteExtension"]),
+    ...mapMutations(["goTo"])
   }
 };
 </script>

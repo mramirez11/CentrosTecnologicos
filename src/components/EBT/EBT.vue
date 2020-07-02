@@ -6,8 +6,8 @@
         <h5 class="font-weight text-h5">Emprendimiento de Base Tecnológica</h5>
       </v-layout>
 
-      <!-- Panel de  -->
-      <v-layout v-for="(item, index) in ebt" :key="index">
+      <!-- Panel de EBT -->
+      <v-layout v-for="(item, index) in ebtState" :key="index">
         <v-container pb-0 pt-0>
           <v-card color="#F2F2F2" class="mt-6 pl-8 pr-8">
             <v-layout justify-end>
@@ -38,7 +38,7 @@
                   v-model="item.cantTrabajadores"
                   label="Cantidad de trabajadores"
                   :rules="inputRules"
-                  min=0
+                  min="0"
                   required
                 ></v-text-field>
               </v-col>
@@ -65,7 +65,12 @@
 
         <!-- Boton siguiente-->
         <v-layout pt-4 flex-row-reverse>
-          <v-btn :disabled="valid" @click="goTo('ParticipanteEBT')" color="success" class="mr-4">Siguiente</v-btn>
+          <v-btn
+            :disabled="valid"
+            @click="goTo('ParticipanteEBT')"
+            color="success"
+            class="mr-4"
+          >Siguiente</v-btn>
         </v-layout>
       </v-row>
     </v-form>
@@ -78,18 +83,16 @@ export default {
     return {
       // Validacion
       inputRules: [v => v.length > 0 || "Requerido"],
-      inputRut: [
-        v => v.length > 7 || "Ingresa un rut válido",
-        v => v.length < 10 || "Ingresa un rut válido"
-      ],
       valid: false
     };
   },
   computed: {
-    ...mapState(["ebt"])
+    ...mapState("EBT", ["ebtState"]),
+    ...mapState("Proyecto", ["proyectoState"])
   },
   methods: {
-    ...mapMutations(["nuevoEBT", "deleteEBT", "goTo"])
+    ...mapMutations("EBT", ["nuevoEBT", "deleteEBT"]),
+    ...mapMutations(["goTo"])
   }
 };
 </script>
